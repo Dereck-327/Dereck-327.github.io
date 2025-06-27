@@ -11,6 +11,7 @@ cover: /image/银狼.jpg
 
 
 # 常用指令
+
 1 source /opt/pkg/petalinux/settings.sh
 2 cd workspace/petalinux/
 3 petalinux-create -t project --template zynqMP -n lark
@@ -21,15 +22,14 @@ cover: /image/银狼.jpg
 8 petalinux-build
 9 petalinux-package --boot --fsbl --fpga --u-boot --force
 10 petalinux 2022.2
-	kernel源码：/home/lifeng/workspace/petalinux/lark/build/tmp/work-shared/zynqmp-generic/kernel-source
-	编译过程产生的目录：home/lifeng/workspace/petalinux/lark/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.15.36+gitAUTOINC+19984dd147-r0/linux-zynqmp_generic-standard-build
-	编译结果目录：home/lifeng/workspace/petalinux/lark/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.15.36+gitAUTOINC+19984dd147-r0/image
-   
+ kernel源码：/home/lifeng/workspace/petalinux/lark/build/tmp/work-shared/zynqmp-generic/kernel-source
+ 编译过程产生的目录：home/lifeng/workspace/petalinux/lark/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.15.36+gitAUTOINC+19984dd147-r0/linux-zynqmp_generic-standard-build
+ 编译结果目录：home/lifeng/workspace/petalinux/lark/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.15.36+gitAUTOINC+19984dd147-r0/image
 
 11 petalinux 2022.2
-	uboot源码:/home/lifeng/workspace/petalinux/lark/build/tmp/work/zynqmp_generic-xilinx-linux/u-boot-xlnx/v2021.01-xilinx-v2022.2+gitAUTOINC+b31476685d-r0/git
-	编译过程目录：/home/lifeng/workspace/petalinux/lark/build/tmp/work/zynqmp_generic-xilinx-linux/u-boot-xlnx/v2021.01-xilinx-v2022.2+gitAUTOINC+b31476685d-r0/build
-	编译结果目录：/home/lifeng/workspace/petalinux/lark/build/tmp/work/zynqmp_generic-xilinx-linux/u-boot-xlnx/v2021.01-xilinx-v2022.2+gitAUTOINC+b31476685d-r0/image
+ uboot源码:/home/lifeng/workspace/petalinux/lark/build/tmp/work/zynqmp_generic-xilinx-linux/u-boot-xlnx/v2021.01-xilinx-v2022.2+gitAUTOINC+b31476685d-r0/git
+ 编译过程目录：/home/lifeng/workspace/petalinux/lark/build/tmp/work/zynqmp_generic-xilinx-linux/u-boot-xlnx/v2021.01-xilinx-v2022.2+gitAUTOINC+b31476685d-r0/build
+ 编译结果目录：/home/lifeng/workspace/petalinux/lark/build/tmp/work/zynqmp_generic-xilinx-linux/u-boot-xlnx/v2021.01-xilinx-v2022.2+gitAUTOINC+b31476685d-r0/image
 
 12 rootfs目录：
 /home/lifeng/workspace/petalinux/lark/images/linux/rootfs.tar.gz,解压以后，可以
@@ -48,10 +48,9 @@ petalinux-devtool modify u-boot-xlnx
 
 15 设备本地编译：
 petalinux-config-->yocto settings-->add pre-mirror url-->回车，输入下面内容，也就是download所在目录：
-file:///home/lifeng/codes/share_files/2022.2/downloads 
+file:///home/lifeng/codes/share_files/2022.2/downloads
 petalinux-config-->yocto settings-->local sstate feeds settings-->回车，输入下面内容，也就是aarch64所在目录：
-/home/lifeng/codes/share_files/2022.2/aarch64 
-
+/home/lifeng/codes/share_files/2022.2/aarch64
 
 16 安装nfs服务器
 1 sudo apt-get install nfs-kernel-server,安装nfs服务器
@@ -67,31 +66,30 @@ sudo /etc/init.d/nfs-kernel-server restart
 17 配置system-user.dtsi,目录/project-spec/meta-user/recipes-bsp/device-tree/files/
 /include/"system-conf.dtsi"
 / {
-	amba {
-		serial@ff010000{
-			status = "disabled";
-		};
-	};
-	aliases {
-		/delete-property/ serial1;
-		/delete-property/ pd_uart1;
-	};
+ amba {
+  serial@ff010000{
+   status = "disabled";
+  };
+ };
+ aliases {
+  /delete-property/ serial1;
+  /delete-property/ pd_uart1;
+ };
 };
 /delete-node/ &uart1;
 
 &gem3 {
-	status = "okay";
-	compatible = "cdns,zynq-gem", "cdns,gem";
-	phy-mode = "rgmii-id";
-	
-	fixed-link {
-		speed = <1000>;
-		full-duplex;
-		pause;
-		asym-pause;
-	};
-};
+ status = "okay";
+ compatible = "cdns,zynq-gem", "cdns,gem";
+ phy-mode = "rgmii-id";
 
+ fixed-link {
+  speed = <1000>;
+  full-duplex;
+  pause;
+  asym-pause;
+ };
+};
 
 18 tftp网络设置
 pc本机设置192.168.1.113，virtualbox手动设置ipv4 ip地址192.168.1.240,主机和ubuntu虚拟机
@@ -104,13 +102,12 @@ tftpboot 0x10000000 rootfs.cpio.gz.u-boot //59M
 tftpboot 0x1000 system.dtb
 booti 0x200000 0x10000000 0x1000
 
-
-2024111030 
+2024111030
 10:00
 1 petalinux-config，只设置initranfs和fpga manager，然后petalinux-build；
 2 petalinux-package --boot --fsbl zynqmp_fsbl.elf --fpga --u-boot --force生成boot.bin
 3 通过vitis，zynqmp_fsbl.elf和boot.bin烧录设备；
-4 
+4
 tftpboot 0x200000 Image //190M
 tftpboot 0x10000000 rootfs.cpio.gz.u-boot //59M
 tftpboot 0x1000 system.dtb
@@ -122,9 +119,9 @@ booti 0x200000 0x10000000 0x1000
 2 cd lark
 3 petalinux-config --get-hw-description ../../xsa
 4 petalinux-config-->yocto settings-->add pre-mirror url-->回车，输入下面内容，也就是download所在目录：
-file:///home/lifeng/codes/share_files/2022.2/downloads 
+file:///home/lifeng/codes/share_files/2022.2/downloads
 5 petalinux-config-->yocto settings-->local sstate feeds settings-->回车，输入下面内容，也就是aarch64所在目录：
-/home/lifeng/codes/share_files/2022.2/aarch64 
+/home/lifeng/codes/share_files/2022.2/aarch64
 6 设置文件系统initram类型，然后保存退出；
 7 petalinux-build编译，一定要先编译一次，否则很麻烦；
 8 cd image/linux，执行petalinux-package --boot --fsbl zynqmp_fsbl.elf --fpga --u-boot --force；
@@ -147,7 +144,7 @@ booti 0x200000 0x10000000 0x1000
 19 查找新添加的ko文件在哪，find ./ -name 模块名字，我的是在lib/modules/5.15.36-xilinx-v2022.2/extra目录下
 20 sudo chmod 755 模块名字，sudo insmod 模块名字,这时候成功的话，应该打印出一些驱动里的输出，这里顺便提以下，现在的内核printk函数，有输出级别的选项，我都是加个err级别的，如：printk(KERN_ERR"hello world\n");否则不会输出到终端；
 21 查看/dev/目录下是否有新建的设备文件，还可以通过cat /proc/devices查看被系统使用的设备，如果正常的话，/dev目录下有设备，cat /proc/devices也能看到设备；
-22 编译应用程序，首先source /opt/Xilinx/Vitis/2022.2/settings64.sh 
+22 编译应用程序，首先source /opt/Xilinx/Vitis/2022.2/settings64.sh
 23 aarch64-linux-gnu-gcc test.c -o test，注意不要使用arm-linux-gnueabihf-gcc test.c -o test，这里一定要注意，我在这里耽搁时间了，否则你下载到设备上，运行提示：no file or directory,如果open失败，则可能是设备文件需要权限，sudo chmod 755 dev/xxxx
 24 设备上电以后，ifconfig查看网络是否起来，没有的话：sudo ifconfig eth0 192.168.1.xxx netmask 255.255.255.0 up
 25 tftp -g -r test 192.168.1.112(启动tftp服务器的ip)
@@ -156,8 +153,7 @@ booti 0x200000 0x10000000 0x1000
 28 ./test,如果应用报错open dev/xxx 失败，那就 sudo chmod 755 /dev/xxx,给硬件设备文件权限
 29 然后就没了。
 
-
-# 设备树
+## 设备树
 
 ```dtsi
 [label:] node-name[@unit-address] {
@@ -165,10 +161,12 @@ booti 0x200000 0x10000000 0x1000
   [child nodes]
 };
 ```
+
 1. unit-address 一般是指代设备地址或寄存器首地址。如果设备没有设备地址或寄存器就不用写。
 2. [child nodes]是这个挂在在这个设备节点上的子节点。
 
 ## compatible属性
+
 compatible 属性也叫兼容性，这个属性在我们后面讲平台设备是才会用到，现在可以简单了解一下。他的值是字符串列表，是平台设备框架中设备和驱动关联的关键，
 在驱动代码中定义一个 of 匹配表来和 compatible 属性对应。
 
@@ -179,9 +177,10 @@ pinctrl_uart1_default 节点。这个节
 复用功能，其他三个是配置 pin 脚的电气特性，conf 中设置通用的特性，conf-rx 中设置输入引
 脚和相关特性，conf-tx 中设置输出引脚和相关特性。
 
-
 ## 并发
-### 原子操作 
+
+### 原子操作
+
 ```c
 typedef struct {
    int counter;
@@ -189,16 +188,20 @@ typedef struct {
 ```
 
 ### 自旋锁
+>
 > 自旋锁的一个特点就是自旋（忙等待），会使得等待锁的线程持续占用 CPU 资源
 某个线程要访问共享资源时，需要先获取相应的锁即上锁，只要不释放
 这个锁即解锁，别的线程就无法获取锁也就无法访问共享资源。此时需要却没有获取到自旋锁
 的线程就会一直处于等带状态(阻塞)。
 
 ### 信号量
+
 与自旋锁相比，信号量有两个优势：
+
 1. 信号量可以让等待信号量的线程进入休眠，减少 CPU 的占用；
 2. 信号量支持对多个线程同时访问共享资源。
 信号量结构体定义如下：
+
 ```c
 struct semaphore {
   raw_spinlock_t lock;
@@ -206,11 +209,15 @@ struct semaphore {
   struct list_head wait_list;
 };
 ```
+
 count 指信号量支持同时访问共享资源的线程数。
 
 ## 计时器
+
 ### 超时回绕
+
 把数据无符号数强转成有符号数巧妙的规避了回绕的问题，不用传统的比较运算符去比较，而使用下面几个宏来代替：
+
 ```c
 #define time_after(unknown,known) ((long)(known) - (long)(unknown)<0)
 #define time_before(unkonwn,known) ((long)(unknown) - (long)(known)<0)
@@ -218,18 +225,5 @@ count 指信号量支持同时访问共享资源的线程数。
 #define time_before_eq(unknown,known) ((long)(known) - (long)(unknown)>=0)
 
 ```
+
 know 为设定的时间
-
-
-
-
-
-
-
-
-
-
-
-
-
-
