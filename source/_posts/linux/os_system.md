@@ -522,3 +522,5 @@ petalinux-build -c rootfs -x clean
 ### 清理设备树
 
 petalinux-build -c device-tree -x clean
+
+
