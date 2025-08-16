@@ -26,7 +26,21 @@ cover: /image/动漫少女.jpg   # 文章封面
       - [应用创建](#应用创建)
     - [gdb 远程调试](#gdb-远程调试)
 - [create modules 驱动](#create-modules-驱动)
-
+  - [linuxptp](#linuxptp)
+    - [内核配置](#内核配置)
+    - [rootfs设置](#rootfs设置)
+  - [设置自动登录](#设置自动登录)
+- [PetaLinux patch生成和应用方法整理](#petalinux-patch生成和应用方法整理)
+  - [patch](#patch)
+    - [2021.1及以后的版本](#20211及以后的版本)
+  - [petalinux-build 清理](#petalinux-build-清理)
+    - [清理所有构建输出和缓存](#清理所有构建输出和缓存)
+    - [或者使用](#或者使用)
+    - [清理特定组件](#清理特定组件)
+    - [清理内核](#清理内核)
+    - [清理 u-boot](#清理-u-boot)
+    - [清理根文件系统](#清理根文件系统)
+    - [清理设备树](#清理设备树)
 
 ## 自启动 使用 systemmd 服务
 
@@ -210,11 +224,13 @@ petalinux-config --get-hw-description ../xsa
 
   ```bash
   petalinux-config-->yocto settings-->add pre-mirror url-->回车，输入下面内容，也就是download所在目录：
-  file:///home/lifeng/codes/share_files/2022.2/downloads
+  file:///home/hjk/peta-localfiles/downloads
   petalinux-config-->yocto settings-->local sstate feeds settings-->回车，输入下面内容，也就是aarch64所在目录：
-  /home/lifeng/codes/share_files/2022.2/aarch64
+  /home/hjk/peta-localfiles/aarch64
   ```
 
+  设置自动登录 : petalinux-config -c rootfs → Image Features → auto login
+  
 3. **需要配置一下网络**
     1. petalinux-config -c u-boot  
     -->boot options-->enable boot arguments->earlycon console=ttyPS0,115200n8 mem=2G@0x0 root=/dev/mmcblk0p2 rw rootwait rootfstype=ext4 cpuidle.off=1 cma=192M@0x10000000  
@@ -436,3 +452,73 @@ petalinux-create -t modules --name scan32hz18b --enable
 petalinux-create -t modules --name systemconfig --enable
 petalinux-create -t modules --name tn581tia --enable
 <!-- petalinux-create -t modules --name pac194x5x --enable -->
+
+## linuxptp
+
+### 内核配置
+
+1. 进入内核配置界面 petalinux-config -c kernel
+   Device Drivers → Networking support → Timestamping in Phy devices
+2. Device Drivers → PTP clock support → XLILINX PTP CLOCK
+3. Device Drivers → PPS support → PPS client using GPIO
+4. Device Drivers → Network device support → Ethernet driver support → Generate hardware packet timestamps
+
+### rootfs设置
+
+petalinux-config → Filesystem Packages → base → linuxptp
+petalinux-config → Filesystem Packages → base → linuxptp-dev
+
+## 设置自动登录
+
+1. petalinux-config -c rootfs
+
+# PetaLinux patch生成和应用方法整理
+
+## patch
+
+见[patch生成和应用](https://adaptivesupport.amd.com/s/article/Petalinuxpatch%E7%94%9F%E6%88%90%E5%92%8C%E5%BA%94%E7%94%A8%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86?language=zh_CN)
+
+### 2021.1及以后的版本
+
+1. 直接通过petalinux工具中的命令，把源码下载到当前的petalinux工程中然后直接按照需要修改，命令格式如下：
+
+```bash
+petalinux-devtool modify <recipe-name>
+# 例如
+petalinux-devtool modify linux-xlnx
+
+```
+
+Linux kernel的源码会被下载到<plnx-proj-root>/components/yocto/workspace/sources/<recipe-name>文件夹下。然后可以直接在这个位置对kernel的源码进行修改，修改完成后直接用petalinux-build就可以编译进去了。
+如果不知道确切的recipe的名字的话，可以使用petalinux-devtool search <key word>来查找。
+例如：petalinux-devtool search xen
+
+## petalinux-build 清理
+
+### 清理所有构建输出和缓存
+
+petalinux-build -x mrproper
+
+### 或者使用
+
+petalinux-build -x distclean
+
+### 清理特定组件
+
+petalinux-build -c <component> -x clean
+
+### 清理内核
+
+petalinux-build -c kernel -x clean
+
+### 清理 u-boot
+
+petalinux-build -c u-boot -x clean
+
+### 清理根文件系统
+
+petalinux-build -c rootfs -x clean
+
+### 清理设备树
+
+petalinux-build -c device-tree -x clean
