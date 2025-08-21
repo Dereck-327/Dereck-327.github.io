@@ -33,6 +33,8 @@ cover: /image/动漫少女.jpg   # 文章封面
 - [PetaLinux patch生成和应用方法整理](#petalinux-patch生成和应用方法整理)
   - [patch](#patch)
     - [2021.1及以后的版本](#20211及以后的版本)
+    - [清除patch](#清除patch)
+    - [清理 devtool modify (linux-xlnx) 产生的源码与补丁](#清理-devtool-modify-linux-xlnx-产生的源码与补丁)
   - [petalinux-build 清理](#petalinux-build-清理)
     - [清理所有构建输出和缓存](#清理所有构建输出和缓存)
     - [或者使用](#或者使用)
@@ -41,6 +43,9 @@ cover: /image/动漫少女.jpg   # 文章封面
     - [清理 u-boot](#清理-u-boot)
     - [清理根文件系统](#清理根文件系统)
     - [清理设备树](#清理设备树)
+- [preboot 通过 mdio 直接操作phy](#preboot-通过-mdio-直接操作phy)
+- [wsl编译petalinux过程中的报错](#wsl编译petalinux过程中的报错)
+  - [`OSError: [Errno 28] inotify watch limit reached`](#oserror-errno-28-inotify-watch-limit-reached)
 
 ## 自启动 使用 systemmd 服务
 
@@ -493,6 +498,104 @@ Linux kernel的源码会被下载到<plnx-proj-root>/components/yocto/workspace/
 如果不知道确切的recipe的名字的话，可以使用petalinux-devtool search <key word>来查找。
 例如：petalinux-devtool search xen
 
+### 清除patch
+
+A. 查看当前 devtool 状态
+petalinux-devtool status
+
+B. 放弃（还原）工作区修改（未 finish 时）
+petalinux-devtool reset linux-xlnx
+这会移除 workspace/sources/linux-xlnx 覆盖层。
+
+C. 如果已经 finish 生成了补丁
+目录通常为：
+project-spec/meta-user/recipes-kernel/linux/
+可能包含：
+linux-xlnx%.bbappend
+*.patch 或 目录 linux-xlnx/ 下的补丁文件
+处理：
+
+直接删除不需要的补丁文件和对应的 bbappend，或编辑 bbappend 去掉不想应用的 SRC_URI += " xxx.patch" 行。
+保留一个空的 bbappend 也可以（不再引用补丁）。
+D. 清理构建输出（按需要由轻到重）
+petalinux-build -c kernel -x clean # 仅清理编译产物
+petalinux-build -c kernel -x cleansstate # 清 kernel 的 sstate 与工作目录 (等价 Yocto cleansstate)
+petalinux-build -c kernel -x mrproper # 更彻底；还原到接近初始 (不删 downloads)
+petalinux-build -x distclean # 项目级更彻底清理（慎用）
+
+E. 重新构建
+petalinux-build -c kernel
+或直接 petalinux-build
+
+F. 验证补丁是否仍被使用
+bitbake -e virtual/kernel | grep -i '.patch'
+或查看 tmp/work/.../linux-xlnx/<version>/temp/log.do_patch 是否已无相关 patch。
+
+额外说明（区别）：
+
+-x clean: 删除当前 recipe 的构建目录（workdir）输出。
+-x cleansstate: 再加删除该 recipe 对应的 sstate 缓存，确保重新执行 fetch/patch/configure。
+-x mrproper: 针对 kernel 做更深清理（类似内核 make mrproper）。
+-x distclean: 项目大清理，除 downloads 之外几乎全删。
+如果只是想撤回误改，不必 distclean。通常 reset + 删除补丁 + cleansstate 足够。
+
+```bash
+// ...existing code...
+petalinux-devtool modify linux-xlnx
+// ...existing code...
+```
+
+### 清理 devtool modify (linux-xlnx) 产生的源码与补丁
+
+1. 查看状态  
+
+```bash
+petalinux-devtool status
+```
+
+2. 放弃工作区修改（未 finish 时）  
+
+```bash
+petalinux-devtool reset linux-xlnx
+```
+
+3. 若已执行过 finish（生成补丁）  
+删除目录:  
+`project-spec/meta-user/recipes-kernel/linux/` 下的  
+
+- `linux-xlnx*.bbappend` （或编辑移除不需要的 SRC_URI += " file://xxx.patch"）  
+- 相关 `*.patch` 文件或子目录
+
+4. 清理构建/缓存（按需选择）  
+
+```bash
+petalinux-build -c kernel -x clean
+petalinux-build -c kernel -x cleansstate    # 需要强制重新应用补丁时
+# 或更彻底：
+petalinux-build -c kernel -x mrproper
+```
+
+5. 重新构建  
+
+```bash
+petalinux-build -c kernel
+```
+
+6. 验证补丁是否还被应用  
+查看日志 `build/tmp/work/.../linux-xlnx/*/temp/log.do_patch`  
+或：
+
+```bash
+bitbake -e virtual/kernel | grep -i "\.patch"
+```
+
+清理策略说明：  
+
+- clean: 仅删工作目录输出  
+- cleansstate: 还删 sstate 缓存，确保补丁重跑或不再应用  
+- mrproper: 针对内核的更彻底清理  
+- distclean: 项目级大清理，非必要不使用
+
 ## petalinux-build 清理
 
 ### 清理所有构建输出和缓存
@@ -523,4 +626,41 @@ petalinux-build -c rootfs -x clean
 
 petalinux-build -c device-tree -x clean
 
+# preboot 通过 mdio 直接操作phy
 
+```bash
+mdio write 0 0x1f 0x4000; // 设置寄存器 [0x001F] 的位 [15] 来启动硬件复位，则会在上电时激活复位。
+sleep 1;
+mdio write 0 0x0D 0x001F;
+mdio write 0 0x0E 0x0573;  // 寄存器地址
+mdio write 0 0x0D 0x401F;
+mdio write 0 0x0E 0x0001;  // 寄存器值
+
+mdio write 0 0x0D 0x001F;
+mdio write 0 0x0E 0x056a;
+mdio write 0 0x0D 0x401F;
+mdio write 0 0x0E 0x5f41;
+
+mdio write 0 0x0D 0x001F;
+mdio write 0 0x0E 0x0602;
+mdio write 0 0x0D 0x401F;
+mdio write 0 0x0E 0x0003;
+
+fatload mmc 0:1 20000000 image.ub;fatload mmc 0:1 10000000 system.bit;fpga loadb 0 10000000 100;
+```
+
+# wsl编译petalinux过程中的报错 
+
+## `OSError: [Errno 28] inotify watch limit reached`
+
+表示 inotify 监视器的限制已经达到了系统的最大值，无法再监视更多的文件或目录.
+
+```bash
+# 方法一 重启后会失效
+sudo sysctl -w fs.inotify.max_user_watches=524288 
+
+# 方法二 编辑 /etc/sysctl.conf 文件，添加或修改以下行：
+fs.inotify.max_user_watches=524288
+# 然后重新加载配置
+sudo sysctl -p
+```
