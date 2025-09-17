@@ -24,9 +24,9 @@ gPTP：强制要求链路上的每个设备（终端和交换机/网桥）都必
 
 ### ptp 和 gptp 架构
 
-ptp实现![ptp](image/ptp/ptp.png)
+ptp实现![ptp](/image/ptp/ptp.png)
 
-gptp实现![gptp](image/ptp/gptp.png)
+gptp实现![gptp](/image/ptp/gptp.png)
 
 ptp(IEEE 1588)的基于udp的实现只需要绑定监听指定的端口(319, 320)上的事件就行
 但是gptp协议是IEEE 802.1AS, 仅支持 Layer 2（以太网帧），所以需要去捕获以太网帧，这里在ethernet的input入口处捕获。需要特别注意需要设置mac的hash表，让gptp的多播地址不被mac过滤。xilinx的mac设置hash表的时候需要先stopmac，设置完后需要restart dma和start mac才能生效。
