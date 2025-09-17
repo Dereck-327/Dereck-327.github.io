@@ -1,7 +1,7 @@
 ---
 title: lwip ptp        # 标题
 data: 2025-09-17 19:58:27
-tags: [os]             # 标签
+tags: [standalone]             # 标签
 categories: [enbeded]              # 分类
 description: ptp gptp  # 描述
 top_img: /image/jizi.png # 顶部背景图
