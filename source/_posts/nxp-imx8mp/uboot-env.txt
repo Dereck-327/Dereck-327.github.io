@@ -1,0 +1,147 @@
+u-boot=> printenv
+arch=arm
+baudrate=115200
+board=imx8mp_evk
+board_name=EVK
+board_rev=iMX8MP
+boot_a_script=load ${devtype} ${devnum}:${distro_bootpart} ${scriptaddr} ${prefix}${script}; source ${scriptaddr}
+boot_efi_binary=load ${devtype} ${devnum}:${distro_bootpart} ${kernel_addr_r} efi/boot/bootaa64.efi; if fdt addr -q ${fdt_addr_r}; then bootefi ${kernel_addr_r} ${fdt_addr_r};else bootefi ${kernel_addr_r} ${fdtcontroladdr};fi
+boot_efi_bootmgr=if fdt addr -q ${fdt_addr_r}; then bootefi bootmgr ${fdt_addr_r};else bootefi bootmgr;fi
+boot_extlinux=sysboot ${devtype} ${devnum}:${distro_bootpart} any ${scriptaddr} ${prefix}${boot_syslinux_conf}
+boot_fdt=try
+boot_fit=no
+boot_net_usb_start=usb start
+boot_prefixes=/ /boot/
+boot_script_dhcp=boot.scr.uimg
+boot_scripts=boot.scr.uimg boot.scr
+boot_syslinux_conf=extlinux/extlinux.conf
+boot_targets=usb0 mmc1 mmc2
+bootcmd=run m7_run;run loadimage;run mmcboot
+bootcmd_mfg=run mfgtool_args;if iminfo ${initrd_addr}; then if test ${tee} = yes; then bootm ${tee_addr} ${initrd_addr} ${fdt_addr}; else booti ${loadaddr} ${initrd_addr} ${fdt_addr}; fi; else echo "Run fastboot ..."; fastboot 0; fi;
+bootcmd_mmc1=devnum=1; run mmc_boot
+bootcmd_mmc2=devnum=2; run mmc_boot
+bootcmd_usb0=devnum=0; run usb_boot
+bootdelay=1
+bootfromdev=2
+bootm_size=0x10000000
+bootscript=echo Running bootscript from mmc ...; source
+bsp_bootcmd=echo Running BSP bootcmd ...; mmc dev ${mmcdev}; if mmc rescan; then if run loadbootscript; then run bootscript; else run m7_run; if run loadimage; then run mmcboot; else run netboot; fi; fi; fi;
+bsp_script=boot.scr
+cmd_lvds=fdt set backlight_lvds status okay;fdt set fb_lvds status okay;fdt set ldb status okay;fdt set ldb/lvds-channel@0 status okay;fdt set ts_lvds_atmel_mt status okay;fdt set fb_lvds interface_pix_fmt RGB24;fdt set ldb/lvds-channel@0 fsl,data-width <24>;fdt set ldb/lvds-channel@0 fsl,data-mapping spwg;fdt set t_lvds clock-frequency <74250000>;fdt set t_lvds hactive <1280>;fdt set t_lvds vactive <800>;fdt set t_lvds hback-porch <5>;fdt set t_lvds hfront-porch <123>;fdt set t_lvds vback-porch <3>;fdt set t_lvds vfront-porch <24>;fdt set t_lvds hsync-len <2>;fdt set t_lvds vsync-len <1>;
+console=ttySAC1,115200
+cpaddr=0x80800000
+cpu=armv8
+distro_bootcmd=for target in ${boot_targets}; do run bootcmd_${target}; done
+dsi_name=off
+dtbimgname=tq-imx8mp.dtb
+efi_dtb_prefixes=/ /dtb/ /dtb/current/
+emmc_dev=2
+env_check=check
+eth1addr=00:04:9f:07:2d:c2
+ethact=ethernet@30bf0000
+ethaddr=00:04:9f:07:2d:c1
+ethprime=eth1
+fastboot_bytes=14360
+fastboot_dev=mmc
+fb_lvds_name=M101NWWB
+fbcon=logo-pos:center,logo-count:1
+fdt_addr=0x44000000
+fdt_addr_r=0x44000000
+fdt_file=${fdtfile}
+fdt_high=0xffffffffffffffff
+fdtcontroladdr=edeab680
+fdtfile=tq-imx8mp.dtb
+filesize=14360
+gatewayip=192.168.1.2
+hdmi_name=off
+image=Image.bin
+initrd_addr=0x43800000
+initrd_high=0xffffffffffffffff
+ipaddr=192.168.1.158
+jh_clk=
+jh_mmcboot=setenv fdtfile ${jh_root_dtb};setenv jh_clk clk_ignore_unused mem=1920MB; run m7_run; if run loadimage; then run mmcboot; else run jh_netboot; fi;
+jh_netboot=setenv fdtfile ${jh_root_dtb}; setenv jh_clk clk_ignore_unused mem=1920MB; run netboot;
+jh_root_dtb=imx8mp-evk-revb4-root.dtb
+kboot=booti
+keeplogo0=1
+keeplogo1=1
+kernel_addr_r=0x40400000
+kernelimgname=Image.bin
+lcdif1_node=/soc@0/bus@32c00000/lcd-controller@32e80000
+lcdif2_node=/soc@0/bus@32c00000/lcd-controller@32e90000
+lcdif3_node= /soc@0/bus@30c00000/lcd-controller@32fc6000
+ldb_node=/soc@0/bus@32c00000/ldb@32ec005c
+load_efi_dtb=load ${devtype} ${devnum}:${distro_bootpart} ${fdt_addr_r} ${prefix}${efi_fdtfile}
+loadaddr=0x40400000
+loadbootscript=fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${bsp_script};
+loadfdt=fatload mmc ${mmcdev}:${mmcpart} ${fdt_addr_r} ${fdtfile}
+loadimage=fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${image}
+loadm7=fatload mmc ${mmcdev}:${mmcpart} ${m7_boot_temp_addr} ${m7image}
+loglevel=6
+logoimgname=logo.bmp
+lvds_edt_node=/soc@0/bus@30800000/i2c@30a40000/edt_touchscreen@38
+lvds_goodix_node=/soc@0/bus@30800000/i2c@30a40000/goodix_touchscreen@5d
+lvds_ilitek_node=/soc@0/bus@30800000/i2c@30a40000/ilitek_touchscreen@41
+lvds_name=off
+lvds_node=/lvds0_panel
+lvds_ti_node=/soc@0/bus@30800000/i2c@30a40000/tsc2007@48
+m7_boot_ddr_addr=0x80000000
+m7_boot_ram_addr=0x7e0000
+m7_boot_temp_addr=0x48000000
+m7_boot_type=ram
+m7_ddr_run=echo Booting M7 from ${m7_boot_ddr_addr} ...; if run loadm7; then cp.b ${m7_boot_temp_addr} ${m7_boot_ddr_addr} ${filesize}; dcache flush; run prepare_mcore; bootaux ${m7_boot_ddr_addr}; fi;
+m7_ram_run=echo Booting M7 from ${m7_boot_ram_addr} ...; if run loadm7; then cp.b ${m7_boot_temp_addr} ${m7_boot_ram_addr} 0x20000; dcache flush; run prepare_mcore; bootaux ${m7_boot_ram_addr}; fi;
+m7_run=if test ${m7_boot_type} = "ddr" -o ${m7_boot_type} = "ram"; then if test "${m7_boot_type}" = "ddr"; then run m7_ddr_run; fi;if test "${m7_boot_type}" = "ram"; then run m7_ram_run; fi;else echo 'no boot m7!'; fi;
+m7image=rpmsg_watchdog_TCM_v1.bin
+mfgtool_args=setenv bootargs console=${console},${baudrate} rdinit=/linuxrc clk_ignore_unused
+mipi_dsi_node=/soc@0/bus@32c00000/mipi_dsi@32e60000/panel@0
+mipi_edt_node=/soc@0/bus@30800000/i2c@30a30000/edt_touchscreen@38
+mipi_goodix_node=/soc@0/bus@30800000/i2c@30a30000/goodix_touchscreen@14
+mipi_ilitek_node=/soc@0/bus@30800000/i2c@30a30000/ilitek_touchscreen@41
+mipi_ti_node=/soc@0/bus@30800000/i2c@30a30000/tsc2007@48
+mmc_boot=if mmc dev ${devnum}; then devtype=mmc; run scan_dev_for_boot_part; fi
+mmcargs=setenv bootargs ${jh_clk} ${mcore_clk} console=${console} root=${mmcroot} loglevel=${loglevel} fbcon=${fbcon} keeplogo=${keeplogo0},${keeplogo1}
+mmcautodetect=yes
+mmcboot=echo Booting from mmc ...; run mmcargs; if test ${boot_fit} = yes || test ${boot_fit} = try; then bootm ${loadaddr}; else if run loadfdt; then booti ${loadaddr} - ${fdt_addr_r}; else echo WARN: Cannot load the DT; fi; fi;
+mmcdev=2
+mmcpart=1
+mmcroot=/dev/mmcblk2p2 rootwait rw
+nandfit_part=yes
+netargs=setenv bootargs ${jh_clk} ${mcore_clk} console=${console} root=/dev/nfs ip=dhcp nfsroot=${serverip}:${nfsroot},v3,tcp
+netboot=echo Booting from net ...; run netargs;  if test ${ip_dyn} = yes; then setenv get_cmd dhcp; else setenv get_cmd tftp; fi; ${get_cmd} ${loadaddr} ${image}; if test ${boot_fit} = yes || test ${boot_fit} = try; then bootm ${loadaddr}; else if ${get_cmd} ${fdt_addr_r} ${fdtfile}; then booti ${loadaddr} - ${fdt_addr_r}; else echo WARN: Cannot load the DT; fi; fi;
+netmask=255.255.255.0
+nodes=/busfreq /power-domains /soc@0/caam-sm@100000 /soc@0/bus@30000000/caam_secvio /soc@0/bus@30000000/caam-snvs@30370000 /soc@0/bus@30800000/flexspi_nand@30bb0000 /soc@0/bus@32c00000/mipi_dsi@32e60000 /soc@0/bus@32c00000/lcd-controller@32e80000 /soc@0/bus@32c00000/blk-ctl@32ec0000 /soc@0/bus@30800000/i2c@30a20000/pca9450@25 /soc@0/bus@30800000/i2c@30a30000/tcpc@50 /wdt-reboot /mcu_rdc /soc@0/bus@30800000/ethernet@30bf0000 /dsi-host /tq101_panel /cbtl04gp /binman /vpu_g1@38300000 /vpu_g2@38310000 /vpu_vc8000e@38320000 /vpu_v4l2 /gpu3d@38000000 /gpu2d@38008000 /vipsi@38500000 /mix_gpu_ml
+partitions=uuid_disk=${uuid_gpt_disk};name=boot,start=30M,size=200M,uuid=${uuid_gpt_boot};name=rootfs,size=-,uuid=${uuid_gpt_rootfs}
+prepare_mcore=setenv mcore_clk clk-imx8mp.mcore_booted;
+readfilelen=0x40000000
+rootimgname=rootfs_ext4.img
+scan_dev_for_boot=echo Scanning ${devtype} ${devnum}:${distro_bootpart}...; for prefix in ${boot_prefixes}; do run scan_dev_for_extlinux; run scan_dev_for_scripts; done;run scan_dev_for_efi;
+scan_dev_for_boot_part=part list ${devtype} ${devnum} -bootable devplist; env exists devplist || setenv devplist 1; for distro_bootpart in ${devplist}; do if fstype ${devtype} ${devnum}:${distro_bootpart} bootfstype; then part uuid ${devtype} ${devnum}:${distro_bootpart} distro_bootpart_uuid ; run scan_dev_for_boot; fi; done; setenv devplist
+scan_dev_for_efi=setenv efi_fdtfile ${fdtfile}; for prefix in ${efi_dtb_prefixes}; do if test -e ${devtype} ${devnum}:${distro_bootpart} ${prefix}${efi_fdtfile}; then run load_efi_dtb; fi;done;run boot_efi_bootmgr;if test -e ${devtype} ${devnum}:${distro_bootpart} efi/boot/bootaa64.efi; then echo Found EFI removable media binary efi/boot/bootaa64.efi; run boot_efi_binary; echo EFI LOAD FAILED: continuing...; fi; setenv efi_fdtfile
+scan_dev_for_extlinux=if test -e ${devtype} ${devnum}:${distro_bootpart} ${prefix}${boot_syslinux_conf}; then echo Found ${prefix}${boot_syslinux_conf}; run boot_extlinux; echo EXTLINUX FAILED: continuing...; fi
+scan_dev_for_scripts=for script in ${boot_scripts}; do if test -e ${devtype} ${devnum}:${distro_bootpart} ${prefix}${script}; then echo Found U-Boot script ${prefix}${script}; run boot_a_script; echo SCRIPT FAILED: continuing...; fi; done
+scriptaddr=0x43500000
+sd_dev=1
+sddev=1
+segment_size=0x8000000
+serial#=0624100043c9f0f1
+serverip=192.168.1.7
+soc=imx8m
+soc_type=imx8mp
+splashdevpart=2:1
+splashfile=logo.bmp
+splashimage=0x50000000
+splashpos=m,m
+splashsource=mmc_fs
+sr_ir_v2_cmd=cp.b ${fdtcontroladdr} ${fdt_addr_r} 0x10000;fdt addr ${fdt_addr_r};fdt set /soc@0/usb@32f10100/usb@38100000 compatible snps,dwc3;fdt set /soc@0/usb@32f10108/usb@38200000 compatible snps,dwc3;for i in ${nodes}; do fdt rm ${i}; done
+uart1_node=/soc@0/bus@30800000/serial@30860000
+uart2_node=/soc@0/bus@30800000/serial@30890000
+uart3_node=/soc@0/bus@30800000/serial@30880000
+uart4_node=/soc@0/bus@30800000/serial@30a60000
+ubootimgname=imx-boot.imx
+usb_boot=usb start; if usb dev ${devnum}; then devtype=usb; run scan_dev_for_boot_part; fi
+usbdev=0
+vendor=freescale
+version=U-Boot 2023.04-g9335568f1 (Nov 14 2024 - 15:32:00 +0800)
+
+Environment size: 9567/16380 bytes

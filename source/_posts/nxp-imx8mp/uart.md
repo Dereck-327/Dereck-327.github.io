@@ -1,5 +1,5 @@
 ---
-title: WSL2        
+title: ARM-NXP        
 data: 2025-10-24 14:06:20
 tags: [NXP IMX8MP]             
 categories: [uart]             
