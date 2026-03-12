@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C++ 常用函数 | 雷子集中营</title><meta name="author" content="索雷博"><meta name="copyright" content="索雷博"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Welcome to [C++]CPP合集(github)虚函数表实现机制 Quick Start 多引用自github上的C++项目  成员变量或函数的命名约定public : 公共的成员变量不建议直接暴露，而是通过公共成员函数来获取protect : 结尾加下划线, 比如member_private  : 结尾加下划线, 比如member_ （我觉得也可用开头加下划线 _member） UML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 常用函数">
+<meta property="og:url" content="http://example.com/2025/05/12/programming-c-cpp/index.html">
+<meta property="og:site_name" content="雷子集中营">
+<meta property="og:description" content="Welcome to [C++]CPP合集(github)虚函数表实现机制 Quick Start 多引用自github上的C++项目  成员变量或函数的命名约定public : 公共的成员变量不建议直接暴露，而是通过公共成员函数来获取protect : 结尾加下划线, 比如member_private  : 结尾加下划线, 比如member_ （我觉得也可用开头加下划线 _member） UML">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/jk.jpg">
+<meta property="article:published_time" content="2025-05-12T07:04:47.000Z">
+<meta property="article:modified_time" content="2026-01-31T11:53:09.330Z">
+<meta property="article:author" content="索雷博">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/jk.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "C++ 常用函数",
+  "url": "http://example.com/2025/05/12/programming-c-cpp/",
+  "image": "http://example.com/image/jk.jpg",
+  "datePublished": "2025-05-12T07:04:47.000Z",
+  "dateModified": "2026-01-31T11:53:09.330Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "索雷博",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/05/12/programming-c-cpp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++ 常用函数',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/styles/main.css"><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/jk.jpg" onerror="this.onerror=null;this.src='/image/%E7%A7%98%E4%B9%A6.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/jizi.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">雷子集中营</span></a><a class="nav-page-title" href="/"><span class="site-name">C++ 常用函数</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">C++ 常用函数</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-12T07:04:47.000Z" title="发表于 2025-05-12 15:04:47">2025-05-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-31T11:53:09.330Z" title="更新于 2026-01-31 19:53:09">2026-01-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>Welcome to [C++]<br><a target="_blank" rel="noopener" href="https://github.com/huihut/interview?tab=readme-ov-file#cc">CPP合集(github)</a><br><a target="_blank" rel="noopener" href="https://blog.twofei.com/496/">虚函数表实现机制</a></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><ul>
+<li>多引用自github上的<a target="_blank" rel="noopener" href="https://github.com/huihut/interview?tab=readme-ov-file#cc">C++项目</a></li>
+</ul>
+<h2 id="成员变量或函数的命名约定"><a href="#成员变量或函数的命名约定" class="headerlink" title="成员变量或函数的命名约定"></a>成员变量或函数的命名约定</h2><p>public : 公共的成员变量不建议直接暴露，而是通过公共成员函数来获取<br>protect : 结尾加下划线, 比如member_<br>private  : 结尾加下划线, 比如member_ （我觉得也可用开头加下划线 _member）</p>
+<h2 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h2><h3 id="箭头"><a href="#箭头" class="headerlink" title="箭头"></a>箭头</h3><ol>
+<li>普通箭头： 箭头通常表示关联关系（Association）。它指示两个类之间的连接，表示类之间的关联或依赖关系。</li>
+<li>空心箭头：空心箭头通常用于表示继承关系（Inheritance）。它表示一个类继承自另一个类，即子类继承父类的属性和方法。</li>
+</ol>
+<h3 id="菱形符号"><a href="#菱形符号" class="headerlink" title="菱形符号"></a>菱形符号</h3><p>菱形通常用于表示聚合关系（Aggregation）或组合关系（Composition）。<br>聚合关系：表示整体与部分之间的关系，部分可以存在独立于整体。<br>组合关系：表示整体与部分之间的关系，部分不能存在独立于整体。</p>
+<h3 id="实线和虚线"><a href="#实线和虚线" class="headerlink" title="实线和虚线"></a>实线和虚线</h3><p>实线： 实线通常表示强关联关系，表示连接的两个类之间有较强的关联性。<br>虚线：通常表示弱关联关系或依赖关系，表示两个类之间的关联性较弱或依赖关系。</p>
+<h3 id="谓词（Predicate）"><a href="#谓词（Predicate）" class="headerlink" title="谓词（Predicate）"></a>谓词（Predicate）</h3><p>-[x] 是一种可调用的对象，用于对给定的输入值进行判断，并返回一个布尔值作为结果。谓词通常用于条件判断、过滤和排序等场景。<br>-[x] 谓词可以是函数指针、函数对象、Lambda 表达式或可以转换为函数指针或函数对象的可调用对象。它们通常被用作算法函数的参数，以确定算法在处理元素时应该如何操作。<br>-[x] 谓词在 C++ 中常用于标准库算法函数（例如 std::find_if、std::remove_if、std::sort）中的条件判断，用于确定元素是否满足特定的条件。谓词接受一个或多个参数，并返回一个布尔值，表示给定的条件是否成立。</p>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing-JK</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h3><p>静态变量是在程序加载前创建由编译器和系统管理, 局部静态变量在第一次访问时初始化，C++11 以后，局部静态变量的初始化是线程安全的。</p>
+<h3 id="内联函数-inline"><a href="#内联函数-inline" class="headerlink" title="内联函数 inline"></a>内联函数 inline</h3><p>编译器将函数插入到每个调用点，而不是生成函数调用，可以消除函数调用的开销提高运行时新能，特别是短小 频繁调用的函数</p>
+<h3 id="模板参数类型的推导"><a href="#模板参数类型的推导" class="headerlink" title="模板参数类型的推导"></a>模板参数类型的推导</h3><p>在模板函数的调用中，编译器会根据传递给函数的实参类型来推导模板参数的类型。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个模板函数，接受格式化字符串和可变参数</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Args&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printValues</span><span class="params">(<span class="type">const</span> std::string&amp; fmt, Args&amp;&amp;... args)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Format string: &quot;</span> &lt;&lt; fmt &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">    (std::cout &lt;&lt; ... &lt;&lt; args) &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>Args&amp;&amp;...</code> : &amp;&amp;是万能引用，使得函数模板能够接收任何类型的参数，同时保持其原始的值类别（左值或右值）。它也常被称为 “转发引用”（Forwarding Reference）。<br><code>T&amp;&amp;</code> 通常表示 右值引用，但在模板函数参数中，当 T 是一个模板类型参数时，T&amp;&amp; 会被视为 万能引用。万能引用可以绑定到：</p>
+<p>左值（Lvalue）：即可以绑定到有名字的、可修改的变量。<br>右值（Rvalue）：即临时对象、字面量等，不是左值的对象。<br>万能引用的语法形式是 T&amp;&amp;，但只有在模板参数的上下文中才能被识别为万能引用。</p>
+<p><code>std::forward&lt;Args&gt;(args)...</code>：完美转发参数，保持其原始的值类别，避免不必要的拷贝和移动。</p>
+<p><code>std::forward</code> : 实现参数转发</p>
+<h3 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h3><p><code>std::atomic&lt;bool&gt; data</code> : 该类型用于实现原子的布尔类型操作，确保对其进行的读写操作是原子的。<br>该类型的load方法可用获取该值 可指定读取顺序，比如load(std::memory_order_relaxed)是以最轻量级读取</p>
+<h3 id="资源锁"><a href="#资源锁" class="headerlink" title="资源锁"></a>资源锁</h3><p><code>std::lock_guard</code> : 一个管理互斥锁的类（std::mutx等互斥锁）自动管理锁的生命周期</p>
+<h3 id="引用成员变量和const成员变量"><a href="#引用成员变量和const成员变量" class="headerlink" title="引用成员变量和const成员变量"></a>引用成员变量和const成员变量</h3><p>引用成员变量和const成员变量只能在初始化列表中初始化，因为他们不能通过赋值来进行初始化，只能在申明的时候进行初始化。</p>
+<h2 id="RALL-Resource-Acquisition-Is-Initialization"><a href="#RALL-Resource-Acquisition-Is-Initialization" class="headerlink" title="RALL (Resource Acquisition Is Initialization)"></a>RALL (Resource Acquisition Is Initialization)</h2><p>资源获取就是初始化:<br><strong>可以指定对象具有构造函数和析构函数，这些构造函数和析构函数在适当的时候由编译器自动调用，这为管理给定对象的内存提供了更为方便的方法。</strong><br>RAII总结如下：</p>
+<ul>
+<li><p>资源在析构函数中被释放</p>
+</li>
+<li><p>该类的实例是堆栈分配的</p>
+</li>
+<li><p>资源是在构造函数中获取的。</p>
+</li>
+</ul>
+<p>RAII代表“资源获取是初始化”。</p>
+<p>常见的例子有：</p>
+<ul>
+<li><p>文件操作</p>
+</li>
+<li><p>智能指针 std :: shared_ptr，std :: unique_ptr</p>
+</li>
+<li><p>互斥量 std :: lock_guard</p>
+</li>
+</ul>
+<h2 id="用户自定义字面量"><a href="#用户自定义字面量" class="headerlink" title="用户自定义字面量"></a>用户自定义字面量</h2><p>user-defined literals,例如</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">length</span> &#123;</span><br><span class="line">  <span class="type">double</span> value;</span><br><span class="line">  <span class="keyword">enum</span> <span class="title class_">unit</span> &#123;</span><br><span class="line">    metre,</span><br><span class="line">    kilometre,</span><br><span class="line">    millimetre,</span><br><span class="line">    centimetre,</span><br><span class="line">    inch,</span><br><span class="line">    foot,</span><br><span class="line">    yard,</span><br><span class="line">    mile,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="type">static</span> <span class="keyword">constexpr</span> <span class="type">double</span> factors[] = &#123;<span class="number">1.0</span>,    <span class="number">1000.0</span>, <span class="number">1e-3</span>,   <span class="number">1e-2</span>,</span><br><span class="line">                                       <span class="number">0.0254</span>, <span class="number">0.3048</span>, <span class="number">0.9144</span>, <span class="number">1609.344</span>&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">explicit</span> <span class="title">length</span><span class="params">(<span class="type">double</span> v, unit u = metre)</span> </span>&#123; value = v * factors[u]; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">length <span class="keyword">operator</span>+(length lhs, length rhs) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">length</span>(lhs.value + rhs.value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">length <span class="keyword">operator</span><span class="string">&quot;&quot;</span> _m(<span class="type">long</span> <span class="type">double</span> v) &#123; <span class="keyword">return</span> <span class="built_in">length</span>(v, length::metre); &#125;</span><br></pre></td></tr></table></figure>
+
+<p>中<code>operator&quot;&quot; _m</code> 就是用户自定义的字面量。</p>
+<h2 id="成员函数说明符"><a href="#成员函数说明符" class="headerlink" title="成员函数说明符"></a>成员函数说明符</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">foo</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">bar</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">foobar</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> : <span class="keyword">public</span> A &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">()</span> <span class="keyword">override</span></span>;       <span class="comment">// OK</span></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">bar</span><span class="params">()</span> <span class="keyword">override</span> <span class="keyword">final</span></span>; <span class="comment">// OK</span></span><br><span class="line">                             <span class="comment">// void foobar() override;</span></span><br><span class="line">  <span class="comment">//   非虚函数不能  override</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C</span> <span class="keyword">final</span> : <span class="keyword">public</span> B &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">()</span> <span class="keyword">override</span></span>; <span class="comment">// OK</span></span><br><span class="line">                       <span class="comment">// void bar() override;</span></span><br><span class="line">  <span class="comment">//  final  函数不可  override</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">D</span> : <span class="keyword">public</span> C &#123;</span><br><span class="line">  <span class="comment">//  错误：final  类不可派生</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型编程和模板"><a href="#泛型编程和模板" class="headerlink" title="泛型编程和模板"></a>泛型编程和模板</h2><h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><ol>
+<li>模板</li>
+<li>模板全特化 : 全特化意味着你为某个具体类型完全重新定义模板的实现，而不是使用模板的默认实现。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 普通函数模板</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">add</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数模板的全特化：为 const char* 特化</span></span><br><span class="line"><span class="keyword">template</span> &lt;&gt;</span><br><span class="line"><span class="function"><span class="type">const</span> <span class="type">char</span>* <span class="title">add</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* a, <span class="type">const</span> <span class="type">char</span>* b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;This is a specialized version for const char*&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>模板偏特化 : 在某些类型的基础上进行部分特化，而不是完全特化。它允许对部分模板参数进行特定类型的处理，而不需要完全指定所有参数的类型。<br>偏特化不能用于函数模板，只能用于类模板。偏特化常见的用法是在部分模板参数上进行特化处理。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个类模板，接受两个类型参数</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyClass</span>() &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Generic template version&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对类模板进行偏特化：当第二个类型参数为 int 时</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;T1, <span class="type">int</span>&gt; &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyClass</span>() &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Partial specialization for T2 = int&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 对指针类型进行偏特化</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;T*&gt; &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyClass</span>() &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Partial specialization for pointers&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="一个阶乘的简单例子"><a href="#一个阶乘的简单例子" class="headerlink" title="一个阶乘的简单例子"></a>一个阶乘的简单例子</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="type">int</span> n&gt; <span class="keyword">struct</span> <span class="title class_">factorial</span> &#123;</span><br><span class="line">  <span class="built_in">static_assert</span>(n &gt;= <span class="number">0</span>, <span class="string">&quot;Arg must be non-negative&quot;</span>);</span><br><span class="line">  <span class="type">static</span> <span class="type">const</span> <span class="type">int</span> value = n * factorial&lt;n - <span class="number">1</span>&gt;::value;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;&gt; <span class="keyword">struct</span> <span class="title class_">factorial</span>&lt;<span class="number">0</span>&gt; &#123; <span class="type">static</span> <span class="type">const</span> <span class="type">int</span> value = <span class="number">1</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, factorial&lt;<span class="number">10</span>&gt;::value);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">索雷博</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/05/12/programming-c-cpp/">http://example.com/2025/05/12/programming-c-cpp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">雷子集中营</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/c/">c++</a></div><div class="post-share"><div class="social-share" data-image="/image/jk.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/image/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/image/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/12/programming-c-artifice/" title="C artifice"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">C artifice</div></div><div class="info-2"><div class="info-item-1">artifice结构体字面量赋值struct hal_support_s&#123;  uint16_t data0;  uint16_t data1;&#125;;const struct hal_support_s hal_support =&#123;  .data0 = 1,  .data2 = 2&#125;;  HAL(Hardware Abstraction Layer，硬件抽象层)┌──────────────────────────────┐│         应用/业务层           ││  (如主循环、业务逻辑、CLI等)   │└─────────────▲────────────────┘              │              │ 调用              │┌─────────────┴────────────────┐│         HAL 支持层           ││   hal_support_s 函数指针表   ││ ┌─────────────────────────┐ ││ │...</div></div></div></a><a class="pagination-related  no-desc" href="/2025/05/12/programming-c-algorithm/" title="post"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">post</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/05/12/programming-c-%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93%E7%9A%84%E7%94%9F%E6%88%90/" title="动态链接库和pybind11"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">动态链接库和pybind11</div></div><div class="info-2"><div class="info-item-1">构建 为了在C++项目下直接测试该DLL，在头文件中也需要暴露dll的API.如果需要生成python可调用的pyd模块, 需要include python解释器的include目录和boost目录、site-packages下的pybind11de include目录,另外还需要添加python的libs目录和boost目录下的编译完的stage下的lib目录。链接python*.lib  #define BOOST_PYTHON_STATIC_LIB#include &lt;boost/python.hpp&gt;#define NOMINMAX#include&lt;pybind11/pybind11.h&gt;#undef max//放在&lt;pybind11/numpy.h&gt;之前（#define NOMINMAX有时不起作用）#include&lt;pybind11/numpy.h&gt;#define EXPORT_DLL  __declspec(dllexport)class EXPORT_DLL className&#123; ...</div></div></div></a><a class="pagination-related" href="/2025/05/12/programming-c-%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF/" title="C++ 泛型编程和模板"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">C++ 泛型编程和模板</div></div><div class="info-2"><div class="info-item-1">SFINAESubstitution Failure Is Not An Error : 替换失败不是错误*** 在模板的参数替换过程中，如果某个模板参数导致不合法的替换，编译器并不会立即报错，而是尝试寻找其他匹配的模板。 ***当编译器在实例化一个模板时，进行模板参数替换，如果替换过程中发生了错误（例如类型不匹配、表达式非法等），编译器会忽略这个模板，而不会将其视为编译错误。这时，编译器会继续寻找其他可能匹配的模板。如果没有找到其他匹配的模板，编译才会失败。SFINAE 主要用于函数模板的重载，通过某些条件选择合适的模板函数，而忽略不适用的函数模板。 typenametemplate &lt;typename T&gt;typename std::enable_if&lt;std::is_integral&lt;T&gt;::value, void&gt;::typeprocess(T value) &#123;    std::cout &lt;&lt; &quot;Processing integral type: &quot; &lt;&lt; value...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/jk.jpg" onerror="this.onerror=null;this.src='/image/%E7%A7%98%E4%B9%A6.gif'" alt="avatar"/></div><div class="author-info-name">索雷博</div><div class="author-info-description">雷子集中营营长</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hjk0815"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hjk0815" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/mjh1667002013" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1779165536&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:18586626234@163.com" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">雷子信徒可入</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E6%88%96%E5%87%BD%E6%95%B0%E7%9A%84%E5%91%BD%E5%90%8D%E7%BA%A6%E5%AE%9A"><span class="toc-text">成员变量或函数的命名约定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML%E7%B1%BB%E5%9B%BE"><span class="toc-text">UML类图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4"><span class="toc-text">箭头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8F%B1%E5%BD%A2%E7%AC%A6%E5%8F%B7"><span class="toc-text">菱形符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%BA%BF%E5%92%8C%E8%99%9A%E7%BA%BF"><span class="toc-text">实线和虚线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%93%E8%AF%8D%EF%BC%88Predicate%EF%BC%89"><span class="toc-text">谓词（Predicate）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="toc-text">静态变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0-inline"><span class="toc-text">内联函数 inline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="toc-text">模板参数类型的推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C"><span class="toc-text">原子操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%94%81"><span class="toc-text">资源锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8Cconst%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F"><span class="toc-text">引用成员变量和const成员变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RALL-Resource-Acquisition-Is-Initialization"><span class="toc-text">RALL (Resource Acquisition Is Initialization)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="toc-text">用户自定义字面量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E%E7%AC%A6"><span class="toc-text">成员函数说明符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF"><span class="toc-text">泛型编程和模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-text">模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E9%98%B6%E4%B9%98%E7%9A%84%E7%AE%80%E5%8D%95%E4%BE%8B%E5%AD%90"><span class="toc-text">一个阶乘的简单例子</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/31/RTOS-system/" title="RTOS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="RTOS System"/></a><div class="content"><a class="title" href="/2026/01/31/RTOS-system/" title="RTOS System">RTOS System</a><time datetime="2026-01-31T11:53:09.330Z" title="发表于 2026-01-31 19:53:09">2026-01-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/31/linux-os-system/" title="OS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="OS System"/></a><div class="content"><a class="title" href="/2026/01/31/linux-os-system/" title="OS System">OS System</a><time datetime="2026-01-31T11:53:09.330Z" title="发表于 2026-01-31 19:53:09">2026-01-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/31/nxp-imx8mp-Q-A/" title="无标题">无标题</a><time datetime="2026-01-31T11:53:09.330Z" title="发表于 2026-01-31 19:53:09">2026-01-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/31/nxp-imx8mp-hawaii-gen2/" title="NXP OS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="NXP OS System"/></a><div class="content"><a class="title" href="/2026/01/31/nxp-imx8mp-hawaii-gen2/" title="NXP OS System">NXP OS System</a><time datetime="2026-01-31T11:53:09.330Z" title="发表于 2026-01-31 19:53:09">2026-01-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/31/nxp-imx8mp-linuxptp/" title="ARM-NXP"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="ARM-NXP"/></a><div class="content"><a class="title" href="/2026/01/31/nxp-imx8mp-linuxptp/" title="ARM-NXP">ARM-NXP</a><time datetime="2026-01-31T11:53:09.330Z" title="发表于 2026-01-31 19:53:09">2026-01-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By 索雷博</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.2.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/styles/fish.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
