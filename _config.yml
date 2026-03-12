@@ -121,7 +121,8 @@ theme: butterfly # landscape butterfly
 deploy:
   type: git
   # repo: git@github.com:hjk0815/hjk0815.github.io.git
-  repo: git@xdereck.xyz:/home/hjk/workspace/00.blog/blog.git
+  # repo: hjk@xdereck.xyz:/home/hjk/workspace/00.blog/blog.git
+  repo: ssh://hjk@blog.xdereck.xyz:8034/home/hjk/workspace/00.blog/blog.git
   branch: master
 
 
