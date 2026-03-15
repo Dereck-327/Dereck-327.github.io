@@ -120,8 +120,9 @@ theme: butterfly # landscape butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:hjk0815/hjk0815.github.io.git
-  # repo: git@47.113.187.110:/home/git/hexo.git
+  # repo: git@github.com:hjk0815/hjk0815.github.io.git
+  # repo: hjk@xdereck.xyz:/home/hjk/workspace/00.blog/blog.git
+  repo: ssh://hjk@blog.xdereck.xyz:8034/home/hjk/workspace/00.blog/blog.git
   branch: master
 
 
