@@ -26,7 +26,7 @@ click_heart:
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://blog.xdereck.xyz
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -119,10 +119,11 @@ theme: butterfly # landscape butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  # repo: git@github.com:hjk0815/hjk0815.github.io.git
-  # repo: hjk@xdereck.xyz:/home/hjk/workspace/00.blog/blog.git
-  repo: ssh://hjk@blog.xdereck.xyz:8034/home/hjk/workspace/00.blog/blog.git
-  branch: master
+  - type: git
+    repo: git@github.com:Dereck-327/Dereck-327.github.io.git
+    branch: master
+  - type: git
+    repo: ssh://hjk@blog.xdereck.xyz:8035/home/hjk/workspace/00.blog/blog.git
+    branch: master
 
 
