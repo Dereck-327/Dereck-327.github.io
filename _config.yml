@@ -126,4 +126,15 @@ deploy:
     repo: ssh://hjk@blog.xdereck.xyz:8035/home/hjk/workspace/00.blog/blog.git
     branch: master
 
-
+related_posts:
+  enable: true
+  enable_env_name: prod  # ⚠️ 强烈建议加上这行
+  filter_threshold: 0.2  # 相似度阈值（值越大，要求两篇文章越相似才会被推荐）
+  related_count: 5       # 每篇文章底部最多推荐几篇
+  weight:                # 算法分析时的权重分配
+    title: 0.2
+    description: 0.2
+    keywords: 0.2
+    tags: 0.2
+    categories: 0.2
+    text: 0.2

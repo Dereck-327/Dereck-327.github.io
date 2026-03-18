@@ -80,23 +80,23 @@ social:
 favicon: /img/favicon.png
 
 avatar:
-  img: /image/jk.jpg
-  effect: false
+  img: /image/homepage/avatar/leisai-0.png
+  effect: true
 
 # Disable all banner images
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img: /image/jizi.png
+default_top_img: /image/homepage/top/动漫少女.jpg
 
 # The banner image of index page
-index_img: /image/jizi.png
+index_img: /image/homepage/top/动漫少女.jpg
 
 # The banner image of archive page
-archive_img: /image/银狼.jpg
+archive_img: /image/cover_wallpaper/homepage/archive/约尔-间谍过家家.png
 
 # Note: tag page, not tags page
-tag_img: /image/银狼.jpg
+tag_img: /image/cover_wallpaper/homepage/tag/粉色少女-美少女.png
 
 # The banner image of tag page, you can set the banner image for each tag
 # Format:
@@ -104,7 +104,7 @@ tag_img: /image/银狼.jpg
 tag_per_img:
 
 # Note: category page, not categories page
-category_img: /image/miku-1.jpg
+category_img: /image/cover_wallpaper/homepage/avatar/leisai-0.png
 
 # The banner image of category page, you can set the banner image for each category
 # Format:
@@ -136,8 +136,8 @@ cover:
 
 # Replace Broken Images
 error_img:
-  flink: /image/秘书.gif
-  post_page: /image/不良少女.jpg
+  flink: /image/cover_wallpaper/homepage/error/银狼.jpg
+  post_page: /image/cover_wallpaper/homepage/error/水柱-鬼灭之刃.png
 
 # A simple 404 page
 error_404:
@@ -241,7 +241,7 @@ post_copyright:
 reward:
   enable: true
   QR_code:
-     - img: /image/alipay.jpg
+     - img: /image/paypal/alipay.jpg
        link:
        text: 支付宝
 
@@ -314,7 +314,7 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/hjk0815
+      link: https://github.com/Dereck-327
   card_announcement:
     enable: true
     content: 雷子信徒可入
