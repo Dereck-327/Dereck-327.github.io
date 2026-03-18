@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>关于嵌入式的一些概念 | 雷子集中营</title><meta name="author" content="索雷博"><meta name="copyright" content="索雷博"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="嵌入式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于嵌入式的一些概念">
+<meta property="og:url" content="http://blog.xdereck.xyz/2025/05/12/linux-%E5%B5%8C%E5%85%A5%E5%BC%8F/index.html">
+<meta property="og:site_name" content="雷子集中营">
+<meta property="og:description" content="嵌入式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.xdereck.xyz/image/%E9%93%B6%E7%8B%BC.jpg">
+<meta property="article:published_time" content="2025-05-12T03:03:41.000Z">
+<meta property="article:modified_time" content="2026-01-31T11:53:09.330Z">
+<meta property="article:author" content="索雷博">
+<meta property="article:tag" content="嵌入式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.xdereck.xyz/image/%E9%93%B6%E7%8B%BC.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "关于嵌入式的一些概念",
+  "url": "http://blog.xdereck.xyz/2025/05/12/linux-%E5%B5%8C%E5%85%A5%E5%BC%8F/",
+  "image": "http://blog.xdereck.xyz/image/%E9%93%B6%E7%8B%BC.jpg",
+  "datePublished": "2025-05-12T03:03:41.000Z",
+  "dateModified": "2026-01-31T11:53:09.330Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "索雷博",
+      "url": "http://blog.xdereck.xyz/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://blog.xdereck.xyz/2025/05/12/linux-%E5%B5%8C%E5%85%A5%E5%BC%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '关于嵌入式的一些概念',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/styles/main.css"><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/jk.jpg" onerror="this.onerror=null;this.src='/image/%E7%A7%98%E4%B9%A6.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/银狼.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">雷子集中营</span></a><a class="nav-page-title" href="/"><span class="site-name">关于嵌入式的一些概念</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">关于嵌入式的一些概念</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-12T03:03:41.000Z" title="发表于 2025-05-12 11:03:41">2025-05-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-31T11:53:09.330Z" title="更新于 2026-01-31 19:53:09">2026-01-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="U-Boot"><a href="#U-Boot" class="headerlink" title="U-Boot"></a>U-Boot</h2><p>常见的 开源引导加载程序，用于嵌入式系统。它支持多种架构，包括 ARM、x86、PowerPC、RISC-V 等。U-Boot 提供了启动嵌入式系统的关键功能，如加载操作系统内核、引导文件系统、硬件初始化和系统调试。</p>
+<p>b: Byte 8bit<br>w: Word 字 16bit（嵌入式）<br>I: 整型 interge 32bit</p>
+<h2 id="BSP"><a href="#BSP" class="headerlink" title="BSP"></a>BSP</h2><p>板级支持包(BSP):BSP 是嵌入式系统开发中的一个重要概念,指的是为特定的硬件平台或开发板提供的软件支持包。BSP 包含了针对特定硬件平台的驱动程序、操作系统适配层、外设控制库以及其他必要的软件组件。它的目的是为嵌入式开发人员提供一个统一的接口和工具集,简化针对特定硬件平台的软件开发过程。BSP 可以包括针对处理器、内存、外设(如串口、GPIO、SPI、I2C 等)、中断控制等的底层驱动程序和库。</p>
+<h2 id="PS-and-PL"><a href="#PS-and-PL" class="headerlink" title="PS and PL"></a>PS and PL</h2><h3 id="PS-Processing-System"><a href="#PS-Processing-System" class="headerlink" title="PS : Processing System"></a>PS : Processing System</h3><p>PS端通常指的是处理系统部分,即嵌入式处理器或CPU。这个部分通常运行软件,执行高层次的应用程序代码和控制任务。<br>在Xilinx的Zynq系列FPGA中,PS端通常指的是内嵌的ARM Cortex-A9处理器。</p>
+<h2 id="FATFS文件系统库"><a href="#FATFS文件系统库" class="headerlink" title="FATFS文件系统库"></a>FATFS文件系统库</h2><h3 id="f-mount函数"><a href="#f-mount函数" class="headerlink" title="f_mount函数"></a>f_mount函数</h3><p>将逻辑驱动器(如 SD 卡、USB 闪存等)挂载到文件系统,通过它可以访问存储设备上的文件。<br>一般步骤是先将驱动器(sd等)初始化,再将驱动器挂载到文件系统</p>
+<h3 id="f-mkfs函数"><a href="#f-mkfs函数" class="headerlink" title="f_mkfs函数"></a>f_mkfs函数</h3><p>对物理存储设备(如 SD 卡、eMMC、USB 闪存等)进行格式化操作。<br>它会在存储设备上创建一个新的 FAT 文件系统(如 FAT12、FAT16 或 FAT32),从而使该设备可以被文件系统管理,并用于读写文件操作。</p>
+<h2 id="emmc-embedded-multiMediaCard"><a href="#emmc-embedded-multiMediaCard" class="headerlink" title="emmc (embedded multiMediaCard)"></a>emmc (embedded multiMediaCard)</h2><p>通常焊接在主板上</p>
+<p>一个嵌入式 Linux 系统可能会将 eMMC 分为多个分区:</p>
+<p>Boot 分区:存储启动加载器和内核映像。<br>RootFS 分区:存储根文件系统。<br>Data 分区:用于用户数据存储。</p>
+<h2 id="lwip"><a href="#lwip" class="headerlink" title="lwip"></a>lwip</h2><p>在 lwIP 中,TCP 协议使用两种定时器来处理 TCP 连接的维护:</p>
+<ol>
+<li>快速定时器 (tcp_fasttmr):</li>
+</ol>
+<ul>
+<li>触发频率:通常每 250 毫秒触发一次(在默认配置下)。</li>
+<li>主要职责:用于处理 TCP 的快速任务,比如:</li>
+<li>ACK 确认包的发送。</li>
+<li>保持活动的连接管理。</li>
+<li>处理 TCP 重传计时器(当重传定时器超时时会触发重传操作)。</li>
+<li>调整滑动窗口,处理延迟确认(delayed ACK)。</li>
+</ul>
+<ol start="2">
+<li>慢速定时器 (tcp_slowtmr):</li>
+</ol>
+<ul>
+<li>触发频率:通常每 500 毫秒触发一次。</li>
+<li>主要职责:处理超时重传、连接超时检测和断开连接等操作。</li>
+</ul>
+<h3 id="tcp-recv-struct-tcp-pcb-pcb-tcp-recv-fn-recv"><a href="#tcp-recv-struct-tcp-pcb-pcb-tcp-recv-fn-recv" class="headerlink" title="tcp_recv(struct tcp_pcb *pcb, tcp_recv_fn recv)"></a>tcp_recv(struct tcp_pcb *pcb, tcp_recv_fn recv)</h3><p>提供了一种在应用程序中注册接收数据回调函数的机制。当 TCP 连接上有新数据到达时,系统会调用这个回调函数,以便用户代码可以处理接收到的数据。</p>
+<ul>
+<li>pcb 代表 Protocol Control Block (协议控制块),是 lwIP 中用来维护一个 TCP 连接状态的数据结构。</li>
+<li>tcp_recv_fn 指向接收回调函数的指针</li>
+</ul>
+<h3 id="struct-tcp-pcb"><a href="#struct-tcp-pcb" class="headerlink" title="struct tcp_pcb"></a>struct tcp_pcb</h3><ul>
+<li>struct tcp_pcb 是 lwIP(Lightweight IP)协议栈中的一个数据结构,用于表示一个 TCP 协议控制块(PCB,Protocol Control Block)。<br>它是 lwIP 中管理 TCP 连接的核心数据结构,包含了 TCP 连接的状态、控制信息、缓冲区和回调函数等。</li>
+<li>每个 TCP 连接都有一个对应的 tcp_pcb 结构,用来存储连接的相关信息。这些信息包括连接的本地和远程地址、端口号、连接状态<br>(如 LISTEN、ESTABLISHED、CLOSED 等),以及与 TCP 协议相关的控制参数(如滑动窗口、超时时间、重传计数等)。</li>
+</ul>
+<h3 id="xemacif-input"><a href="#xemacif-input" class="headerlink" title="xemacif_input"></a>xemacif_input</h3><p>Xilinx 的以太网接口驱动程序中的一个函数,用于处理接收到的以太网数据包。该函数通常在基于 lwIP(Lightweight IP)协议栈的嵌入式系统中使用,<br>特别是在 Xilinx Zynq 和 Zynq Ultrascale+ 平台上,它负责将接收到的以太网数据包传递给上层协议栈进行处理。<br>该函数主要用于与 AXI Ethernet 或 Ethernet Lite 这样的硬件接口进行通信,通过 DMA 或中断的方式获取数据包,并将其交给 lwIP 处理。</p>
+<h3 id="nagle算法"><a href="#nagle算法" class="headerlink" title="nagle算法"></a>nagle算法</h3><p>一个lwip中的优化算法,用于减少网络传输中小包的数量,将小包数据包缓冲起来,等到一定数量后一起发送。关闭后可以让每个数据包尽快发送而不是等待。</p>
+<h3 id="tcp-arg-newpcb-void-UINTPTR-conn"><a href="#tcp-arg-newpcb-void-UINTPTR-conn" class="headerlink" title="tcp_arg(newpcb, (void *)(UINTPTR)conn)"></a>tcp_arg(newpcb, (void *)(UINTPTR)conn)</h3><p>为指定的 TCP 连接设置用户自定义的数据指针。<br>tcp_err() 注册错误处理回调函数,用于处理连接中的异常情况。</p>
+<h2 id="flash-type"><a href="#flash-type" class="headerlink" title="flash type"></a>flash type</h2><p>-<a href="/image/vitis_platform_prj_create/flashType.png">flash-type</a><br>QSPI-X8 Dual Parallel 是一种 Quad-SPI(QSPI) 闪存模式,在嵌入式系统中经常用于提高存储器的读写速度和带宽.</p>
+<p>QSPI-X8 Dual Parallel 模式结合了 Quad-SPI 和 Dual Parallel 的优点:</p>
+<ol>
+<li>Quad-SPI (X4):每个 QSPI 闪存使用 4 条数据线,并通过 I&#x2F;O 线传输 4 位数据。</li>
+<li>Dual Parallel:两个 QSPI 闪存并行工作,组合成 8 位数据宽度(X8 模式)。<br>所以每个时钟周期传输 8 位数据。</li>
+</ol>
+<h2 id="AXI-Advanced-eXtensible-Interface"><a href="#AXI-Advanced-eXtensible-Interface" class="headerlink" title="AXI (Advanced eXtensible Interface)"></a>AXI (Advanced eXtensible Interface)</h2><p>总线接口协议,广泛用于嵌入式系统和片上系统(SoC)中,特别是在FPGA设计中。AXI作为数据传输协议,负责处理不同设备间的通信,比如处理器、外设、存储器等硬件模块之间的数据传输。</p>
+<h2 id="DMA-Direct-Memory-Access"><a href="#DMA-Direct-Memory-Access" class="headerlink" title="DMA (Direct Memory Access)"></a>DMA (Direct Memory Access)</h2><ul>
+<li>直接存储访问, 一种在嵌入式系统、计算机系统中用于提高数据传输效率的技术。它允许设备直接访问内存，而不需要经过 CPU 的参与，从而大幅减少 CPU 的工作负荷，特别是在数据传输任务频繁的系统中。</li>
+</ul>
+<h2 id="i2c"><a href="#i2c" class="headerlink" title="i2c"></a>i2c</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://blog.xdereck.xyz">索雷博</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://blog.xdereck.xyz/2025/05/12/linux-%E5%B5%8C%E5%85%A5%E5%BC%8F/">http://blog.xdereck.xyz/2025/05/12/linux-%E5%B5%8C%E5%85%A5%E5%BC%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://blog.xdereck.xyz" target="_blank">雷子集中营</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a></div><div class="post-share"><div class="social-share" data-image="/image/%E9%93%B6%E7%8B%BC.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/image/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/image/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/12/linux-linux-kernel/" title="linux kernel"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="onerror=null;src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">linux kernel</div></div><div class="info-2"><div class="info-item-1">kernel 编译常见错误编译选项证书make[1]: [&#x2F;home&#x2F;hjk&#x2F;Desktop&#x2F;workspace&#x2F;00.linux-kernel&#x2F;linux-6.14.2&#x2F;Makefile:1994: .] Error 2make: [Makefile:251: __sub-make] Error 2 编译时内存不足(多半是虚拟机分配的内存空间不足)# 1. 创建分区sudo dd if=/dev/zero of=/swapfile bs=1M count=1024    # 1 * 1024 = 1024 创建 1 g 的内存分区sudo mkswap /swapfilesudo swapon /swapfile# free -m    #可以查看内存使用# 创建完交换分区之后就可以继续编译# 编译完之后记得用以下命令关闭交换分区# 某次我就是忘了关闭交换分区，导致开不了机，然后切换 tty1 ，登进去之后关闭交换分区才可以进入桌面的。#2. 关闭分区sudo swapoff /swapfilesudo...</div></div></div></a><a class="pagination-related" href="/2025/05/12/opensource-Qt/" title="Qt"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Qt</div></div><div class="info-2"><div class="info-item-1">关于Qt的一些笔记Qt Creator的安装用清华镜像注意qt的账户分商务和社区版本https://mirrors.tuna.tsinghua.edu.cn/qt/ moveToThreadmoveToThread 设置线程亲和性的作用是将对象及其事件处理关联到指定的线程。在 Qt 等框架中，每个对象默认属于创建它的线程，只有属于某个线程的对象才能在该线程中安全地接收和处理事件。 </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/jk.jpg" onerror="this.onerror=null;this.src='/image/%E7%A7%98%E4%B9%A6.gif'" alt="avatar"/></div><div class="author-info-name">索雷博</div><div class="author-info-description">雷子集中营营长</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hjk0815"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hjk0815" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/mjh1667002013" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1779165536&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:18586626234@163.com" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">雷子信徒可入</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#U-Boot"><span class="toc-text">U-Boot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BSP"><span class="toc-text">BSP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PS-and-PL"><span class="toc-text">PS and PL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PS-Processing-System"><span class="toc-text">PS : Processing System</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FATFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%BA%93"><span class="toc-text">FATFS文件系统库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#f-mount%E5%87%BD%E6%95%B0"><span class="toc-text">f_mount函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#f-mkfs%E5%87%BD%E6%95%B0"><span class="toc-text">f_mkfs函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#emmc-embedded-multiMediaCard"><span class="toc-text">emmc (embedded multiMediaCard)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lwip"><span class="toc-text">lwip</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp-recv-struct-tcp-pcb-pcb-tcp-recv-fn-recv"><span class="toc-text">tcp_recv(struct tcp_pcb *pcb, tcp_recv_fn recv)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#struct-tcp-pcb"><span class="toc-text">struct tcp_pcb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xemacif-input"><span class="toc-text">xemacif_input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nagle%E7%AE%97%E6%B3%95"><span class="toc-text">nagle算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp-arg-newpcb-void-UINTPTR-conn"><span class="toc-text">tcp_arg(newpcb, (void *)(UINTPTR)conn)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flash-type"><span class="toc-text">flash type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AXI-Advanced-eXtensible-Interface"><span class="toc-text">AXI (Advanced eXtensible Interface)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DMA-Direct-Memory-Access"><span class="toc-text">DMA (Direct Memory Access)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#i2c"><span class="toc-text">i2c</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/18/nxp-imx8mp-hawaii-gen2/" title="NXP OS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="NXP OS System"/></a><div class="content"><a class="title" href="/2026/03/18/nxp-imx8mp-hawaii-gen2/" title="NXP OS System">NXP OS System</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/18/nxp-imx8mp-yocto-prj/" title="NXP OS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="NXP OS System"/></a><div class="content"><a class="title" href="/2026/03/18/nxp-imx8mp-yocto-prj/" title="NXP OS System">NXP OS System</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/18/Tools-python-ruff/" title="无标题">无标题</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/18/Tools-python-uv/" title="无标题">无标题</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/31/RTOS-system/" title="RTOS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="RTOS System"/></a><div class="content"><a class="title" href="/2026/01/31/RTOS-system/" title="RTOS System">RTOS System</a><time datetime="2026-01-31T11:53:09.330Z" title="发表于 2026-01-31 19:53:09">2026-01-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By 索雷博</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.2.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/styles/fish.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

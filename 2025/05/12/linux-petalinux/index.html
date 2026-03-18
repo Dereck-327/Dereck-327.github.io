@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>petalinux | 雷子集中营</title><meta name="author" content="索雷博"><meta name="copyright" content="索雷博"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="petalinux system">
+<meta property="og:type" content="article">
+<meta property="og:title" content="petalinux">
+<meta property="og:url" content="http://blog.xdereck.xyz/2025/05/12/linux-petalinux/index.html">
+<meta property="og:site_name" content="雷子集中营">
+<meta property="og:description" content="petalinux system">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.xdereck.xyz/image/%E9%93%B6%E7%8B%BC.jpg">
+<meta property="article:published_time" content="2025-05-12T02:55:41.000Z">
+<meta property="article:modified_time" content="2026-01-31T11:53:09.330Z">
+<meta property="article:author" content="索雷博">
+<meta property="article:tag" content="os">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.xdereck.xyz/image/%E9%93%B6%E7%8B%BC.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "petalinux",
+  "url": "http://blog.xdereck.xyz/2025/05/12/linux-petalinux/",
+  "image": "http://blog.xdereck.xyz/image/%E9%93%B6%E7%8B%BC.jpg",
+  "datePublished": "2025-05-12T02:55:41.000Z",
+  "dateModified": "2026-01-31T11:53:09.330Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "索雷博",
+      "url": "http://blog.xdereck.xyz/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://blog.xdereck.xyz/2025/05/12/linux-petalinux/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'petalinux',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/styles/main.css"><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/jk.jpg" onerror="this.onerror=null;this.src='/image/%E7%A7%98%E4%B9%A6.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/银狼.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">雷子集中营</span></a><a class="nav-page-title" href="/"><span class="site-name">petalinux</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">petalinux</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-12T02:55:41.000Z" title="发表于 2025-05-12 10:55:41">2025-05-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-31T11:53:09.330Z" title="更新于 2026-01-31 19:53:09">2026-01-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h1><p>1 source &#x2F;opt&#x2F;pkg&#x2F;petalinux&#x2F;settings.sh<br>2 cd workspace&#x2F;petalinux&#x2F;<br>3 petalinux-create -t project –template zynqMP -n lark<br>4 cd lark<br>5 petalinux-config –get-hw-description ..&#x2F;..&#x2F;xsa_files&#x2F;second&#x2F;<br>6 petalinux-config -c kernel<br>7 petalinux-config -c rootfs<br>8 petalinux-build<br>9 petalinux-package –boot –fsbl –fpga –u-boot –force<br>10 petalinux 2022.2<br> kernel源码：&#x2F;home&#x2F;lifeng&#x2F;workspace&#x2F;petalinux&#x2F;lark&#x2F;build&#x2F;tmp&#x2F;work-shared&#x2F;zynqmp-generic&#x2F;kernel-source<br> 编译过程产生的目录：home&#x2F;lifeng&#x2F;workspace&#x2F;petalinux&#x2F;lark&#x2F;build&#x2F;tmp&#x2F;work&#x2F;zynqmp_generic-xilinx-linux&#x2F;linux-xlnx&#x2F;5.15.36+gitAUTOINC+19984dd147-r0&#x2F;linux-zynqmp_generic-standard-build<br> 编译结果目录：home&#x2F;lifeng&#x2F;workspace&#x2F;petalinux&#x2F;lark&#x2F;build&#x2F;tmp&#x2F;work&#x2F;zynqmp_generic-xilinx-linux&#x2F;linux-xlnx&#x2F;5.15.36+gitAUTOINC+19984dd147-r0&#x2F;image</p>
+<p>11 petalinux 2022.2<br> uboot源码:&#x2F;home&#x2F;lifeng&#x2F;workspace&#x2F;petalinux&#x2F;lark&#x2F;build&#x2F;tmp&#x2F;work&#x2F;zynqmp_generic-xilinx-linux&#x2F;u-boot-xlnx&#x2F;v2021.01-xilinx-v2022.2+gitAUTOINC+b31476685d-r0&#x2F;git<br> 编译过程目录：&#x2F;home&#x2F;lifeng&#x2F;workspace&#x2F;petalinux&#x2F;lark&#x2F;build&#x2F;tmp&#x2F;work&#x2F;zynqmp_generic-xilinx-linux&#x2F;u-boot-xlnx&#x2F;v2021.01-xilinx-v2022.2+gitAUTOINC+b31476685d-r0&#x2F;build<br> 编译结果目录：&#x2F;home&#x2F;lifeng&#x2F;workspace&#x2F;petalinux&#x2F;lark&#x2F;build&#x2F;tmp&#x2F;work&#x2F;zynqmp_generic-xilinx-linux&#x2F;u-boot-xlnx&#x2F;v2021.01-xilinx-v2022.2+gitAUTOINC+b31476685d-r0&#x2F;image</p>
+<p>12 rootfs目录：<br>&#x2F;home&#x2F;lifeng&#x2F;workspace&#x2F;petalinux&#x2F;lark&#x2F;images&#x2F;linux&#x2F;rootfs.tar.gz,解压以后，可以</p>
+<p>13 清理编译：<br>petalinux-build -x mrproper,删除tmp文件，images&#x2F;，build&#x2F;， components&#x2F;plnx_workspace<br>petalinux-build -x cleanall,删除tmp和sstate</p>
+<p>14 拷贝源码<br>petalinux-devtool modify linux-xlnx<br>petalinux-devtool modify u-boot-xlnx<br>这样uboot和linux源码就会拷贝到components&#x2F;yocto&#x2F;workspace&#x2F;sources&#x2F;目录下。<br>注意：<br>14.1 只有成功编译petalinux以后，执行上面2条命令才有效;<br>14.2 修改上面2个目录下的源代码，编译petalinux，修改就会生效；</p>
+<p>15 设备本地编译：<br>petalinux-config–&gt;yocto settings–&gt;add pre-mirror url–&gt;回车，输入下面内容，也就是download所在目录：<br>file:&#x2F;&#x2F;&#x2F;home&#x2F;lifeng&#x2F;codes&#x2F;share_files&#x2F;2022.2&#x2F;downloads<br>petalinux-config–&gt;yocto settings–&gt;local sstate feeds settings–&gt;回车，输入下面内容，也就是aarch64所在目录：<br>&#x2F;home&#x2F;lifeng&#x2F;codes&#x2F;share_files&#x2F;2022.2&#x2F;aarch64</p>
+<p>16 安装nfs服务器<br>1 sudo apt-get install nfs-kernel-server,安装nfs服务器<br>2 sudo apt-get install nfs-common  安装nfs客户端<br>3 sudo gedit &#x2F;etc&#x2F;exports，在最下面加入这么一行：<br>&#x2F;home&#x2F;lifeng&#x2F;nfs *(rw,sync,no_root_squash)<br>4 在家目录新建nfs目录：<br>mkdir -p &#x2F;home&#x2F;lifeng&#x2F;nfs<br>chmod 777 &#x2F;home&#x2F;lifeng&#x2F;nfs<br>5 启动nfs服务：<br>sudo &#x2F;etc&#x2F;init.d&#x2F;nfs-kernel-server restart</p>
+<p>17 配置system-user.dtsi,目录&#x2F;project-spec&#x2F;meta-user&#x2F;recipes-bsp&#x2F;device-tree&#x2F;files&#x2F;<br>&#x2F;include&#x2F;“system-conf.dtsi”<br>&#x2F; {<br> amba {<br>  serial@ff010000{<br>   status &#x3D; “disabled”;<br>  };<br> };<br> aliases {<br>  &#x2F;delete-property&#x2F; serial1;<br>  &#x2F;delete-property&#x2F; pd_uart1;<br> };<br>};<br>&#x2F;delete-node&#x2F; &uart1;</p>
+<p>&amp;gem3 {<br> status &#x3D; “okay”;<br> compatible &#x3D; “cdns,zynq-gem”, “cdns,gem”;<br> phy-mode &#x3D; “rgmii-id”;</p>
+<p> fixed-link {<br>  speed &#x3D; &lt;1000&gt;;<br>  full-duplex;<br>  pause;<br>  asym-pause;<br> };<br>};</p>
+<p>18 tftp网络设置<br>pc本机设置192.168.1.113，virtualbox手动设置ipv4 ip地址192.168.1.240,主机和ubuntu虚拟机<br>互相可以ping通。<br>设备ping 240，现实alive，表示设备与虚拟机通信成功；一旦成功以后，出现不成功的情况，请重启虚拟机；</p>
+<p>19 直接下载image.ub,不行，启动不了。<br>tftpboot 0x200000 Image &#x2F;&#x2F;190M<br>tftpboot 0x10000000 rootfs.cpio.gz.u-boot &#x2F;&#x2F;59M<br>tftpboot 0x1000 system.dtb<br>booti 0x200000 0x10000000 0x1000</p>
+<p>2024111030<br>10:00<br>1 petalinux-config，只设置initranfs和fpga manager，然后petalinux-build；<br>2 petalinux-package –boot –fsbl zynqmp_fsbl.elf –fpga –u-boot –force生成boot.bin<br>3 通过vitis，zynqmp_fsbl.elf和boot.bin烧录设备；<br>4<br>tftpboot 0x200000 Image &#x2F;&#x2F;190M<br>tftpboot 0x10000000 rootfs.cpio.gz.u-boot &#x2F;&#x2F;59M<br>tftpboot 0x1000 system.dtb<br>booti 0x200000 0x10000000 0x1000<br>5 可以成功启动设备；</p>
+<p>20241109<br>1 petalinux-create -t project –template zynqMP -n lark<br>2 cd lark<br>3 petalinux-config –get-hw-description ..&#x2F;..&#x2F;xsa<br>4 petalinux-config–&gt;yocto settings–&gt;add pre-mirror url–&gt;回车，输入下面内容，也就是download所在目录：<br>file:&#x2F;&#x2F;&#x2F;home&#x2F;lifeng&#x2F;codes&#x2F;share_files&#x2F;2022.2&#x2F;downloads<br>5 petalinux-config–&gt;yocto settings–&gt;local sstate feeds settings–&gt;回车，输入下面内容，也就是aarch64所在目录：<br>&#x2F;home&#x2F;lifeng&#x2F;codes&#x2F;share_files&#x2F;2022.2&#x2F;aarch64<br>6 设置文件系统initram类型，然后保存退出；<br>7 petalinux-build编译，一定要先编译一次，否则很麻烦；<br>8 cd image&#x2F;linux，执行petalinux-package –boot –fsbl zynqmp_fsbl.elf –fpga –u-boot –force；<br>9 拷贝Image，rootfs.cpio.gz.u-boot， system.dtb到tftp下载目录；<br>10 设备上电（已经烧录uboot），到uboot数秒按下任意键盘按键；<br>11 setenv ipaddr xxx.xxx.1.xxx, setenv serverip xxx.xxx.1.xxx；<br>12 ping serverip,显示host serverip is alive；<br>13 分别执行下面命令：<br>tftpboot 0x200000 Image<br>tftpboot 0x10000000 rootfs.cpio.gz.u-boot &#x2F;&#x2F;59M<br>tftpboot 0x1000 system.dtb<br>booti 0x200000 0x10000000 0x1000<br>14 输入用户名：petalinux，设置2次密码进入系统；<br>到了这里，整个系统已经运行起来，只不过文件系统是内存类型，也就是我们作各种实验的环境；</p>
+<p>15 到工程一级目录，执行petalinux-create -t modules –name fpgaversion –enable，新建一个驱动并且在rootfs中选中；<br>16 修改hawaii&#x2F;project-spec&#x2F;meta-user&#x2F;recipes-modules&#x2F;fpgaversion&#x2F;files&#x2F;fpgaversion.c驱动源文件；<br>17 回到hawaii目录执行petalinux-build编译，出错的话，向上翻，找到.c文件出错的地方，修改，继续编译，直到没有错误完全通过；<br>18 执行步骤13和14<br>19 查找新添加的ko文件在哪，find .&#x2F; -name 模块名字，我的是在lib&#x2F;modules&#x2F;5.15.36-xilinx-v2022.2&#x2F;extra目录下<br>20 sudo chmod 755 模块名字，sudo insmod 模块名字,这时候成功的话，应该打印出一些驱动里的输出，这里顺便提以下，现在的内核printk函数，有输出级别的选项，我都是加个err级别的，如：printk(KERN_ERR”hello world\n”);否则不会输出到终端；<br>21 查看&#x2F;dev&#x2F;目录下是否有新建的设备文件，还可以通过cat &#x2F;proc&#x2F;devices查看被系统使用的设备，如果正常的话，&#x2F;dev目录下有设备，cat &#x2F;proc&#x2F;devices也能看到设备；<br>22 编译应用程序，首先source &#x2F;opt&#x2F;Xilinx&#x2F;Vitis&#x2F;2022.2&#x2F;settings64.sh<br>23 aarch64-linux-gnu-gcc test.c -o test，注意不要使用arm-linux-gnueabihf-gcc test.c -o test，这里一定要注意，我在这里耽搁时间了，否则你下载到设备上，运行提示：no file or directory,如果open失败，则可能是设备文件需要权限，sudo chmod 755 dev&#x2F;xxxx<br>24 设备上电以后，ifconfig查看网络是否起来，没有的话：sudo ifconfig eth0 192.168.1.xxx netmask 255.255.255.0 up<br>25 tftp -g -r test 192.168.1.112(启动tftp服务器的ip)<br>26 sync<br>27 sudo chmod 755 test<br>28 .&#x2F;test,如果应用报错open dev&#x2F;xxx 失败，那就 sudo chmod 755 &#x2F;dev&#x2F;xxx,给硬件设备文件权限<br>29 然后就没了。</p>
+<h2 id="设备树"><a href="#设备树" class="headerlink" title="设备树"></a>设备树</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[label:] node-name[@unit-address] &#123;</span><br><span class="line">  [properties definitions]</span><br><span class="line">  [child nodes]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>unit-address 一般是指代设备地址或寄存器首地址。如果设备没有设备地址或寄存器就不用写。</li>
+<li>[child nodes]是这个挂在在这个设备节点上的子节点。</li>
+</ol>
+<h2 id="compatible属性"><a href="#compatible属性" class="headerlink" title="compatible属性"></a>compatible属性</h2><p>compatible 属性也叫兼容性，这个属性在我们后面讲平台设备是才会用到，现在可以简单了解一下。他的值是字符串列表，是平台设备框架中设备和驱动关联的关键，<br>在驱动代码中定义一个 of 匹配表来和 compatible 属性对应。</p>
+<h2 id="pinctrl-子系统-和-gpio-读写寄存器"><a href="#pinctrl-子系统-和-gpio-读写寄存器" class="headerlink" title="pinctrl 子系统 和 gpio (读写寄存器)"></a>pinctrl 子系统 和 gpio (读写寄存器)</h2><p>pinctrl_uart1_default 节点。这个节<br>点下面没有属性，而是有 4 个子节点：mux、conf、conf-rx、conf-tx。其中 mux 是配置 pin 脚的<br>复用功能，其他三个是配置 pin 脚的电气特性，conf 中设置通用的特性，conf-rx 中设置输入引<br>脚和相关特性，conf-tx 中设置输出引脚和相关特性。</p>
+<h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><h3 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">   <span class="type">int</span> counter;</span><br><span class="line">&#125; <span class="type">atomic_t</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h3><blockquote>
+<p>自旋锁的一个特点就是自旋（忙等待），会使得等待锁的线程持续占用 CPU 资源<br>某个线程要访问共享资源时，需要先获取相应的锁即上锁，只要不释放<br>这个锁即解锁，别的线程就无法获取锁也就无法访问共享资源。此时需要却没有获取到自旋锁<br>的线程就会一直处于等带状态(阻塞)。</p>
+</blockquote>
+<h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><p>与自旋锁相比，信号量有两个优势：</p>
+<ol>
+<li>信号量可以让等待信号量的线程进入休眠，减少 CPU 的占用；</li>
+<li>信号量支持对多个线程同时访问共享资源。<br>信号量结构体定义如下：</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">semaphore</span> &#123;</span></span><br><span class="line">  <span class="type">raw_spinlock_t</span> lock;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> count;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">wait_list</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>count 指信号量支持同时访问共享资源的线程数。</p>
+<h2 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h2><h3 id="超时回绕"><a href="#超时回绕" class="headerlink" title="超时回绕"></a>超时回绕</h3><p>把数据无符号数强转成有符号数巧妙的规避了回绕的问题，不用传统的比较运算符去比较，而使用下面几个宏来代替：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> time_after(unknown,known) ((long)(known) - (long)(unknown)&lt;0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> time_before(unkonwn,known) ((long)(unknown) - (long)(known)&lt;0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> time_after_eq(unknown,known) ((long)(unknown) - (long)(known)&gt;=0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> time_before_eq(unknown,known) ((long)(known) - (long)(unknown)&gt;=0)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>know 为设定的时间</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://blog.xdereck.xyz">索雷博</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://blog.xdereck.xyz/2025/05/12/linux-petalinux/">http://blog.xdereck.xyz/2025/05/12/linux-petalinux/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://blog.xdereck.xyz" target="_blank">雷子集中营</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/os/">os</a></div><div class="post-share"><div class="social-share" data-image="/image/%E9%93%B6%E7%8B%BC.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/image/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/image/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/12/linux-OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/" title="petalinux"><img class="cover" src="/image/%E9%93%B6%E7%8B%BC.jpg" onerror="onerror=null;src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">petalinux</div></div><div class="info-2"><div class="info-item-1">OSIOSI: Open System Interconnect (开放式系统互联)OSI参考模型    OSI七层模型 TCP&#x2F;IP四层模型 TCP&#x2F;IP协议族    应用层、表示层、会话层 应用层 HTTP, FTP, DNS, SMTP   传输层 传输层 TCP, UDP   网络层 网络层 IP, ICMP, ARP   数据链路层、物理层 网络接口层 Ethernet, Wi-Fi, PPP   </div></div></div></a><a class="pagination-related" href="/2025/05/12/linux-driver-develop/" title="驱动开发"><img class="cover" src="/image/%E4%B8%8D%E8%89%AF%E4%BA%BA%E6%9D%8E%E6%98%9F%E4%BA%91.jpg" onerror="onerror=null;src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">驱动开发</div></div><div class="info-2"><div class="info-item-1">常用函数kmalloc 和 dev_kzalloc 分配内存kmalloc : 需要手动清理， 收到释放 ; 但是 dev_kzalloc可以自动管理内存devm系列的函数可以自动释放资源kzalloc : 分配需要初始化为零的内存块 module_platform_driver 和 platform_driver_register区别module_platform_driver 和 platform_driver_register 是 Linux 内核中用于注册平台驱动的两种不同方式。这两种方式都用于注册一个平台设备驱动程序，但在使用上有一些细微的区别。module_platform_driver : 不需要显示地调用注册函数(module_init module_exit)platform_driver_register : 需要显示地调用注册函数 设计器初始化允许在初始化结构体时显式指定某个字段的值。 .field_name = value,  .field_name: 结构体的字段名。value: 要赋给该字段的值。 dma一般框架一个典型的 DMA...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/05/12/linux-OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/" title="petalinux"><img class="cover" src="/image/%E9%93%B6%E7%8B%BC.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">petalinux</div></div><div class="info-2"><div class="info-item-1">OSIOSI: Open System Interconnect (开放式系统互联)OSI参考模型    OSI七层模型 TCP&#x2F;IP四层模型 TCP&#x2F;IP协议族    应用层、表示层、会话层 应用层 HTTP, FTP, DNS, SMTP   传输层 传输层 TCP, UDP   网络层 网络层 IP, ICMP, ARP   数据链路层、物理层 网络接口层 Ethernet, Wi-Fi, PPP   </div></div></div></a><a class="pagination-related" href="/2025/05/12/linux-arm-dev/" title="arm"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">arm</div></div><div class="info-2"><div class="info-item-1">RICRIC 通常指 RAN Intelligent Controller(无线接入网智能控制器) </div></div></div></a><a class="pagination-related" href="/2026/01/31/linux-os-system/" title="OS System"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-31</div><div class="info-item-2">OS System</div></div><div class="info-2"><div class="info-item-1"> linux常用指令 systemctl   petalinux 系统制作 系统引导和文件系统的制作 initram临时系统文件制作 ext4文件系统制作 编译结果的文件解释 BOOT.bin image.ub system.bit(bitstream) rootfs_cpio.tar.gz zynqmp_fsbl.elf   u-boot SysMonPSU pgrep 获取指定进程信息 驱动创建 应用创建   gdb 远程调试     create modules 驱动 linuxptp 内核配置 rootfs设置   设置自动登录   PetaLinux patch生成和应用方法整理 patch 2021.1及以后的版本 清除patch 清理 devtool modify (linux-xlnx) 产生的源码与补丁   petalinux-build 清理 清理所有构建输出和缓存 或者使用 清理特定组件 清理内核 清理 u-boot 清理根文件系统 清理设备树     preboot 通过 mdio...</div></div></div></a><a class="pagination-related" href="/2025/05/12/linux-linux-kernel/" title="linux kernel"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">linux kernel</div></div><div class="info-2"><div class="info-item-1">kernel 编译常见错误编译选项证书make[1]: [&#x2F;home&#x2F;hjk&#x2F;Desktop&#x2F;workspace&#x2F;00.linux-kernel&#x2F;linux-6.14.2&#x2F;Makefile:1994: .] Error 2make: [Makefile:251: __sub-make] Error 2 编译时内存不足(多半是虚拟机分配的内存空间不足)# 1. 创建分区sudo dd if=/dev/zero of=/swapfile bs=1M count=1024    # 1 * 1024 = 1024 创建 1 g 的内存分区sudo mkswap /swapfilesudo swapon /swapfile# free -m    #可以查看内存使用# 创建完交换分区之后就可以继续编译# 编译完之后记得用以下命令关闭交换分区# 某次我就是忘了关闭交换分区，导致开不了机，然后切换 tty1 ，登进去之后关闭交换分区才可以进入桌面的。#2. 关闭分区sudo swapoff /swapfilesudo...</div></div></div></a><a class="pagination-related" href="/2026/03/18/nxp-imx8mp-hawaii-gen2/" title="NXP OS System"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-18</div><div class="info-item-2">NXP OS System</div></div><div class="info-2"><div class="info-item-1">standalone 编译各模块uboot拉取uboot仓库# clone 自己的仓库后，将官方的仓库subtree下来 注意可能需要代理git remote add uboot-imx https://github.com/nxp-imx/uboot-imx.gitgit subtree add --prefix=uboot-imx uboot-imx lf_v2025.04 --squash # --squash 是将remote仓库的所有提交commint成一个# 拉取atf信任固件git remote add imx-atf https://github.com/nxp-imx/imx-atf git subtree add --prefix=imx-atf imx-atf lf_v2.12 --squash# 下载ddr training binmkdir firmware-imxwget -P ./firmware-imx...</div></div></div></a><a class="pagination-related" href="/2026/03/18/nxp-imx8mp-yocto-prj/" title="NXP OS System"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-18</div><div class="info-item-2">NXP OS System</div></div><div class="info-2"><div class="info-item-1">yocto 编译nxp系统检查 Yocto 编译出来的 .wic 镜像内容查看分区信息# 查看分区信息fdisk -l core-image-*.wic  挂载 .wic 镜像分区unzstd ./tmp/deploy/images/imx8mpevk/core-image-base-*.wic.zstsudo losetup -Pf --show ./tmp/deploy/images/imx8mpevk/core-image-base-*.wicsudo mkdir ./wicrootsudo mount /dev/loop0p2 ./wicrootls ./wicroot/ls ./wicroot/usr/bin/# 卸载并释放 loop 设备sudo umount ./wicrootsudo losetup -d /dev/loop0  扩展rootfs分区边界fdisk /dev/mmcblk2# 输入 p查看当前分区，记下第2分区的 Start（起始扇区）数值# 输入 d，然后输入 2 删除第2分区。# 输入 n 新建分区，输入 p，编号输入 2#...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/jk.jpg" onerror="this.onerror=null;this.src='/image/%E7%A7%98%E4%B9%A6.gif'" alt="avatar"/></div><div class="author-info-name">索雷博</div><div class="author-info-description">雷子集中营营长</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hjk0815"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hjk0815" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/mjh1667002013" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1779165536&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:18586626234@163.com" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">雷子信徒可入</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E6%A0%91"><span class="toc-text">设备树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#compatible%E5%B1%9E%E6%80%A7"><span class="toc-text">compatible属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pinctrl-%E5%AD%90%E7%B3%BB%E7%BB%9F-%E5%92%8C-gpio-%E8%AF%BB%E5%86%99%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">pinctrl 子系统 和 gpio (读写寄存器)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91"><span class="toc-text">并发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C"><span class="toc-text">原子操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E6%97%8B%E9%94%81"><span class="toc-text">自旋锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="toc-text">信号量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E6%97%B6%E5%99%A8"><span class="toc-text">计时器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E6%97%B6%E5%9B%9E%E7%BB%95"><span class="toc-text">超时回绕</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/18/nxp-imx8mp-hawaii-gen2/" title="NXP OS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="NXP OS System"/></a><div class="content"><a class="title" href="/2026/03/18/nxp-imx8mp-hawaii-gen2/" title="NXP OS System">NXP OS System</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/18/nxp-imx8mp-yocto-prj/" title="NXP OS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="NXP OS System"/></a><div class="content"><a class="title" href="/2026/03/18/nxp-imx8mp-yocto-prj/" title="NXP OS System">NXP OS System</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/18/Tools-python-ruff/" title="无标题">无标题</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/18/Tools-python-uv/" title="无标题">无标题</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/31/RTOS-system/" title="RTOS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="RTOS System"/></a><div class="content"><a class="title" href="/2026/01/31/RTOS-system/" title="RTOS System">RTOS System</a><time datetime="2026-01-31T11:53:09.330Z" title="发表于 2026-01-31 19:53:09">2026-01-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By 索雷博</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.2.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/styles/fish.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

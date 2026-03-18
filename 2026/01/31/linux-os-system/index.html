@@ -1,0 +1,488 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>OS System | 雷子集中营</title><meta name="author" content="索雷博"><meta name="copyright" content="索雷博"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="os system">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS System">
+<meta property="og:url" content="http://blog.xdereck.xyz/2026/01/31/linux-os-system/index.html">
+<meta property="og:site_name" content="雷子集中营">
+<meta property="og:description" content="os system">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.xdereck.xyz/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg">
+<meta property="article:published_time" content="2026-01-31T11:53:09.330Z">
+<meta property="article:modified_time" content="2026-01-31T11:53:09.330Z">
+<meta property="article:author" content="索雷博">
+<meta property="article:tag" content="os">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.xdereck.xyz/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "OS System",
+  "url": "http://blog.xdereck.xyz/2026/01/31/linux-os-system/",
+  "image": "http://blog.xdereck.xyz/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg",
+  "datePublished": "2026-01-31T11:53:09.330Z",
+  "dateModified": "2026-01-31T11:53:09.330Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "索雷博",
+      "url": "http://blog.xdereck.xyz/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://blog.xdereck.xyz/2026/01/31/linux-os-system/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OS System',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/styles/main.css"><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/jk.jpg" onerror="this.onerror=null;this.src='/image/%E7%A7%98%E4%B9%A6.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/jizi.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">雷子集中营</span></a><a class="nav-page-title" href="/"><span class="site-name">OS System</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">OS System</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-31T11:53:09.330Z" title="发表于 2026-01-31 19:53:09">2026-01-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-31T11:53:09.330Z" title="更新于 2026-01-31 19:53:09">2026-01-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><ul>
+<li><a href="#linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4">linux常用指令</a><ul>
+<li><a href="#systemctl">systemctl</a></li>
+</ul>
+</li>
+<li><a href="#petalinux-%E7%B3%BB%E7%BB%9F%E5%88%B6%E4%BD%9C">petalinux 系统制作</a><ul>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%E5%92%8C%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%B6%E4%BD%9C">系统引导和文件系统的制作</a></li>
+<li><a href="#initram%E4%B8%B4%E6%97%B6%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E5%88%B6%E4%BD%9C">initram临时系统文件制作</a></li>
+<li><a href="#ext4%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%88%B6%E4%BD%9C">ext4文件系统制作</a><ul>
+<li><a href="#%E7%BC%96%E8%AF%91%E7%BB%93%E6%9E%9C%E7%9A%84%E6%96%87%E4%BB%B6%E8%A7%A3%E9%87%8A">编译结果的文件解释</a><ul>
+<li><a href="#bootbin">BOOT.bin</a></li>
+<li><a href="#imageub">image.ub</a></li>
+<li><a href="#systembitbitstream">system.bit(bitstream)</a></li>
+<li><a href="#rootfs_cpiotargz">rootfs_cpio.tar.gz</a></li>
+<li><a href="#zynqmp_fsblelf">zynqmp_fsbl.elf</a></li>
+</ul>
+</li>
+<li><a href="#u-boot">u-boot</a></li>
+<li><a href="#sysmonpsu">SysMonPSU</a><ul>
+<li><a href="#pgrep-%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9B%E7%A8%8B%E4%BF%A1%E6%81%AF">pgrep 获取指定进程信息</a></li>
+<li><a href="#%E9%A9%B1%E5%8A%A8%E5%88%9B%E5%BB%BA">驱动创建</a></li>
+<li><a href="#%E5%BA%94%E7%94%A8%E5%88%9B%E5%BB%BA">应用创建</a></li>
+</ul>
+</li>
+<li><a href="#gdb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95">gdb 远程调试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#create-modules-%E9%A9%B1%E5%8A%A8">create modules 驱动</a><ul>
+<li><a href="#linuxptp">linuxptp</a><ul>
+<li><a href="#%E5%86%85%E6%A0%B8%E9%85%8D%E7%BD%AE">内核配置</a></li>
+<li><a href="#rootfs%E8%AE%BE%E7%BD%AE">rootfs设置</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95">设置自动登录</a></li>
+</ul>
+</li>
+<li><a href="#petalinux-patch%E7%94%9F%E6%88%90%E5%92%8C%E5%BA%94%E7%94%A8%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86">PetaLinux patch生成和应用方法整理</a><ul>
+<li><a href="#patch">patch</a><ul>
+<li><a href="#20211%E5%8F%8A%E4%BB%A5%E5%90%8E%E7%9A%84%E7%89%88%E6%9C%AC">2021.1及以后的版本</a></li>
+<li><a href="#%E6%B8%85%E9%99%A4patch">清除patch</a></li>
+<li><a href="#%E6%B8%85%E7%90%86-devtool-modify-linux-xlnx-%E4%BA%A7%E7%94%9F%E7%9A%84%E6%BA%90%E7%A0%81%E4%B8%8E%E8%A1%A5%E4%B8%81">清理 devtool modify (linux-xlnx) 产生的源码与补丁</a></li>
+</ul>
+</li>
+<li><a href="#petalinux-build-%E6%B8%85%E7%90%86">petalinux-build 清理</a><ul>
+<li><a href="#%E6%B8%85%E7%90%86%E6%89%80%E6%9C%89%E6%9E%84%E5%BB%BA%E8%BE%93%E5%87%BA%E5%92%8C%E7%BC%93%E5%AD%98">清理所有构建输出和缓存</a></li>
+<li><a href="#%E6%88%96%E8%80%85%E4%BD%BF%E7%94%A8">或者使用</a></li>
+<li><a href="#%E6%B8%85%E7%90%86%E7%89%B9%E5%AE%9A%E7%BB%84%E4%BB%B6">清理特定组件</a></li>
+<li><a href="#%E6%B8%85%E7%90%86%E5%86%85%E6%A0%B8">清理内核</a></li>
+<li><a href="#%E6%B8%85%E7%90%86-u-boot">清理 u-boot</a></li>
+<li><a href="#%E6%B8%85%E7%90%86%E6%A0%B9%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">清理根文件系统</a></li>
+<li><a href="#%E6%B8%85%E7%90%86%E8%AE%BE%E5%A4%87%E6%A0%91">清理设备树</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#preboot-%E9%80%9A%E8%BF%87-mdio-%E7%9B%B4%E6%8E%A5%E6%93%8D%E4%BD%9Cphy">preboot 通过 mdio 直接操作phy</a></li>
+<li><a href="#wsl%E7%BC%96%E8%AF%91petalinux%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%8A%A5%E9%94%99">wsl编译petalinux过程中的报错</a><ul>
+<li><a href="#oserror-errno-28-inotify-watch-limit-reached"><code>OSError: [Errno 28] inotify watch limit reached</code></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="自启动-使用-systemmd-服务"><a href="#自启动-使用-systemmd-服务" class="headerlink" title="自启动 使用 systemmd 服务"></a>自启动 使用 systemmd 服务</h2><ul>
+<li><p>在petalinux或yocto构建的系统中<br>.service 文件定义服务的启动、停止、依赖关系、运行环境等<br>.bb (BitBake) 配方文件，用于定义如何获取、编译、安装一个软件包，并将其集成到镜像中</p>
+</li>
+<li><p>自启动的流程<br>BitBake 构建系统 → 根据 .bb 文件安装服务 → 镜像打包 → 系统启动 → systemd 加载服务 → 按依赖顺序启动服务</p>
+</li>
+<li><p>详细流程</p>
+</li>
+</ul>
+<ol>
+<li><p>BitBake 构建阶段<br>通过 .bb 文件中的 do_install 将可执行程序和服务文件安装到临时目录（${D}）。<br>FILES 变量声明哪些文件需要被打包到最终的根文件系统镜像（如 hawaii_algorithm 和 hawaii_algorithm.service）。</p>
+</li>
+<li><p>镜像生成阶段<br>所有通过 FILES 声明的文件被包含在镜像中，例如：<br>&#x2F;usr&#x2F;bin&#x2F;hawaii_algorithm<br>&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;hawaii_algorithm.service</p>
+</li>
+<li><p>系统启动阶段<br>Linux 内核启动后，由 systemd 作为初始化系统（PID&#x3D;1）接管。<br>systemd 读取 &#x2F;lib&#x2F;systemd&#x2F;system&#x2F; 中的服务文件，并根据 WantedBy 配置将服务链接到对应的目标（如 multi-user.target）。<br>根据依赖关系（After&#x3D; 和 Requires&#x3D;）按顺序启动服务。</p>
+</li>
+<li><p>服务激活过程<br>当系统进入 multi-user.target 时，systemd 启动所有与该目标关联的服务。<br>服务按依赖顺序启动：例如 network.target 先于 hawaii_algorithm.service 启动。</p>
+</li>
+</ol>
+<h3 id="create-app"><a href="#create-app" class="headerlink" title="create app"></a>create app</h3><ol>
+<li>petalinux-create -t apps –template install –name service_name –enable 创建一个app服务</li>
+</ol>
+<h3 id="file-path"><a href="#file-path" class="headerlink" title="file path"></a>file path</h3><ol>
+<li>到项目的 project-spec&#x2F;meta-user&#x2F;recipes-apps&#x2F;service_name&#x2F;files 目录下 创建想要添加的自启动 .service文件(自动生成的 service_name 文件可以不用管)</li>
+</ol>
+<h3 id="服务编写"><a href="#服务编写" class="headerlink" title="服务编写"></a>服务编写</h3><ol>
+<li>编写 .service 文件，以autostart为例<br>需要启动两个服务 一个是算法解析模块 一个是应用模块<br>这里将我的可执行程序拷贝到了files目录下 以便.bb文件 生成配方把文件放到指定的目录</li>
+</ol>
+<blockquote>
+<p>算法模块</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Hawaii Algorithm Service  </span><br><span class="line">After=network-online.target  </span><br><span class="line">After=serial-getty@ttyPS0.service  </span><br><span class="line">Requires=network-online.target      </span><br><span class="line">Requires=serial-getty@ttyPS0.service  </span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/petalinux/hawaii_algorithm  </span><br><span class="line">Restart=on-failure</span><br><span class="line">User=root</span><br><span class="line">StandardOutput=journal    </span><br><span class="line">StandardError=journal </span><br><span class="line"></span><br><span class="line"># 如果目录不存在，启动前自动创建</span><br><span class="line">ExecStartPre=/bin/mkdir -p /petalinux</span><br><span class="line">ExecStartPre=/bin/mkdir -p /petalinux/log/ps</span><br><span class="line">ExecStartPre=/bin/mkdir -p /petalinux/log/algorithm</span><br><span class="line">ExecStartPre=/bin/chmod 755 /petalinux</span><br><span class="line">ExecStartPre=/bin/chmod 644 /petalinux/log/ps</span><br><span class="line">ExecStartPre=/bin/chmod 644 /petalinux/log/algorithm</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>应用模块</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Hawaii autostart service</span><br><span class="line">After=hawaii_algorithm.service  </span><br><span class="line">Requires=hawaii_algorithm.service  </span><br><span class="line">After=serial-getty@ttyPS0.service     </span><br><span class="line">Requires=serial-getty@ttyPS0.service  </span><br><span class="line">After=multi-user.target   </span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line"># ExecStart=/etc/init.d/autostart start  </span><br><span class="line"># 或直接执行命令（推荐）：</span><br><span class="line">ExecStart=/petalinux/hawaii </span><br><span class="line">Restart=on-failure</span><br><span class="line">User=root</span><br><span class="line">StandardOutput=journal</span><br><span class="line">StandardError=journal</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target  # 设置启动目标</span><br></pre></td></tr></table></figure>
+
+<h3 id="配方编写"><a href="#配方编写" class="headerlink" title="配方编写"></a>配方编写</h3><ol start="4">
+<li>编写.bb(BitBake) 文件</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"># This file is the autostart recipe. </span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">SUMMARY = &quot;Simple autostart application&quot; </span><br><span class="line"># SECTION = &quot;PETALINUX/apps&quot; </span><br><span class="line">LICENSE = &quot;MIT&quot; </span><br><span class="line">LIC_FILES_CHKSUM = &quot;file://$&#123;COMMON_LICENSE_DIR&#125;/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302&quot; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SRC_URI = &quot;file://hawaii_algorithm \</span><br><span class="line">           file://hawaii \</span><br><span class="line">           file://hawaii_algorithm.service \</span><br><span class="line">           file://hawaii.service \</span><br><span class="line">            file://zlog.conf&quot;</span><br><span class="line"></span><br><span class="line"># 继承 systemd 类以支持服务管理</span><br><span class="line">inherit systemd</span><br><span class="line"></span><br><span class="line"># 启用 systemd 服务</span><br><span class="line">SYSTEMD_SERVICE:$&#123;PN&#125; = &quot;hawaii_algorithm.service hawaii.service&quot;</span><br><span class="line"></span><br><span class="line">SYSTEMD_AUTO_ENABLE:$&#123;PN&#125; = &quot;disable&quot;</span><br><span class="line"></span><br><span class="line">S = &quot;$&#123;WORKDIR&#125;&quot;</span><br><span class="line"></span><br><span class="line">do_install() &#123;</span><br><span class="line">    # 创建目录</span><br><span class="line">    install -d -m 0644 $&#123;D&#125;/petalinux</span><br><span class="line"></span><br><span class="line">    # 安装可执行程序到 /petalinux</span><br><span class="line">    install -m 0755 $&#123;S&#125;/hawaii_algorithm $&#123;D&#125;/petalinux/</span><br><span class="line">    install -m 0755 $&#123;S&#125;/hawaii $&#123;D&#125;/petalinux/</span><br><span class="line">    install -m 0644 $&#123;S&#125;/zlog.conf $&#123;D&#125;/petalinux/</span><br><span class="line"></span><br><span class="line">    # 安装 systemd 服务文件到 /lib/systemd/system</span><br><span class="line">    install -d $&#123;D&#125;$&#123;systemd_system_unitdir&#125;</span><br><span class="line">    install -m 0644 $&#123;S&#125;/hawaii_algorithm.service $&#123;D&#125;$&#123;systemd_system_unitdir&#125;/</span><br><span class="line">    install -m 0644 $&#123;S&#125;/hawaii.service $&#123;D&#125;$&#123;systemd_system_unitdir&#125;/</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 定义安装后的文件路径（关键！）</span><br><span class="line">FILES:$&#123;PN&#125; += &quot; \</span><br><span class="line">    $&#123;systemd_system_unitdir&#125;/hawaii.service \</span><br><span class="line">    $&#123;systemd_system_unitdir&#125;/hawaii_algorithm.service \</span><br><span class="line">    /petalinux/hawaii \</span><br><span class="line">    /petalinux/hawaii_algorithm \</span><br><span class="line">    /petalinux/zlog.conf \</span><br><span class="line">&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="linux常用指令"><a href="#linux常用指令" class="headerlink" title="linux常用指令"></a>linux常用指令</h1><h2 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h2><ol>
+<li>查看活跃的服务 : systemctl list-units –type&#x3D;service –state&#x3D;running</li>
+<li>查看指定服务状态: systemctl status ***.service</li>
+<li>启动关闭重启: systemctl start servicename ; systemctl stop <service_name>; systemctl restart <service_name></li>
+<li>获取服务日志: sudo journalctl -u hawaii.service -xe –no-pager</li>
+<li>journal查看指定日志的输出 : journalctl -u hawaii.service</li>
+</ol>
+<h1 id="petalinux-系统制作"><a href="#petalinux-系统制作" class="headerlink" title="petalinux 系统制作"></a>petalinux 系统制作</h1><h2 id="系统引导和文件系统的制作"><a href="#系统引导和文件系统的制作" class="headerlink" title="系统引导和文件系统的制作"></a>系统引导和文件系统的制作</h2><p>zynqmp板子需要用BOOT.BIN 和 *_fsbl.elf 来启动, 需要先编一个ext4的文件系统再打包成BOOT.BIN</p>
+<ol>
+<li><p><strong>petalinux-create -t project –template zynqMP -n hawaii</strong><br>cd hawaii<br>petalinux-config –get-hw-description ..&#x2F;xsa</p>
+</li>
+<li><p><strong>petalinux-config</strong></p>
+</li>
+</ol>
+<blockquote>
+<p>配置yocto 配置离线编译 注意download路径需要再前面添加file:&#x2F;&#x2F;<br>设置文件系统类型为initram  </p>
+</blockquote>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">petalinux-config--&gt;yocto settings--&gt;add pre-mirror url--&gt;回车，输入下面内容，也就是download所在目录：</span><br><span class="line">file:///home/hjk/peta-localfiles/downloads</span><br><span class="line">petalinux-config--&gt;yocto settings--&gt;<span class="built_in">local</span> sstate feeds settings--&gt;回车，输入下面内容，也就是aarch64所在目录：</span><br><span class="line">/home/hjk/peta-localfiles/aarch64</span><br></pre></td></tr></table></figure>
+
+<p>  设置自动登录 : petalinux-config -c rootfs → Image Features → auto login</p>
+<ol start="3">
+<li><strong>需要配置一下网络</strong><ol>
+<li>petalinux-config -c u-boot<br> –&gt;boot options–&gt;enable boot arguments-&gt;earlycon console&#x3D;ttyPS0,115200n8 mem&#x3D;2G@0x0 root&#x3D;&#x2F;dev&#x2F;mmcblk0p2 rw rootwait rootfstype&#x3D;ext4 cpuidle.off&#x3D;1 cma&#x3D;192M@0x10000000  <blockquote>
+<p>这里的0x10000000就是某一个hp口在vivado里分配的数据空间.</p>
+</blockquote>
+</li>
+<li>返回–&gt;选择enable a default value for bootcmd，输入内容：<br> bootm 20000000（这是16进制）</li>
+<li>–&gt;选择enable preboot，输入内容：<br> run scsi_init;usb start;mdio write 0 0x1f 0x4000;sleep 1;mdio write 0 0x0D 0x001F;mdio write 0 0x0E 0x0573;mdio write 0 0x0D 0x401F;mdio write 0 0x0E 0x0001;mdio write 0 0x0D 0x001F;mdio write 0 0x0E 0x056a;mdio write 0 0x0D 0x401F;mdio write 0 0x0E 0x5f41;mdio write 0 0x0D 0x001F;mdio write 0 0x0E 0x0602;mdio write 0 0x0D 0x401F;mdio write 0 0x0E 0x0003;fatload mmc 0:1 20000000 image.ub;fatload mmc 0:1 10000000 system.bit;fpga loadb 0 10000000 100;</li>
+</ol>
+</li>
+<li>petalinux-build 编译一下</li>
+<li>petalinux-package –boot –u-boot –force 生成boot.bin，将生成的BOOT.BIN  和 fsbl.elf 烧写到板子上</li>
+<li>启动卡进u-boot 设置ip (1 2 可视情况使用)<ol>
+<li>env default -a回复uboot默认参数</li>
+<li>重启进入u-boot (回复默认环境变量之后需要重启)</li>
+<li>setenv ipaddr 192.168.1.10</li>
+<li>setenv serverip 192.168.1.112</li>
+<li>setenv tftp “tftpboot 10000000 system.bit;fpga loadb 0 10000000 1000;tftpboot 0x200000 Image;tftpboot 0x10000000 rootfs.cpio.gz.u-boot;tftpboot 0x1000 system.dtb;booti 0x200000 0x10000000 0x1000”</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>注意这里可以在ui界面里复制不了copy来的内容 可以去 meta-user&#x2F;recipes-bsp&#x2F;u-boot&#x2F;files 下修改cfg文件 添加对应的配置</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CONFIG_USE_BOOTARGS=y</span><br><span class="line">CONFIG_BOOTARGS=&quot;earlycon console=ttyPS0,115200n8 mem=2G@0x0 root=/dev/mmcblk0p2 rw rootwait rootfstype=ext4 cpuidle.off=1 cma=192M@0x10000000&quot;</span><br><span class="line">CONFIG_BOOTCOMMAND=&quot;bootm 20000000&quot;</span><br><span class="line"></span><br><span class="line">CONFIG_PREBOOT=&quot;run scsi_init;usb start;mdio write 0 0x1f 0x4000;sleep 1;mdio write 0 0x0D 0x001F;mdio write 0 0x0E 0x0573;mdio write 0 0x0D 0x401F;mdio write 0 0x0E 0x0001;mdio write 0 0x0D 0x001F;mdio write 0 0x0E 0x056a;mdio write 0 0x0D 0x401F;mdio write 0 0x0E 0x5f41;mdio write 0 0x0D 0x001F;mdio write 0 0x0E 0x0602;mdio write 0 0x0D 0x401F;mdio write 0 0x0E 0x0003;fatload mmc 0:1 20000000 image.ub;fatload mmc 0:1 10000000 system.bit;fpga loadb 0 10000000 100;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>在同级目录下的 platform-top.h 头文件记录了一些u-boot下的环境变量，可以提前在这里设置好</p>
+<figure class="highlight h"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;configs/xilinx_zynqmp.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONFIG_EXTRA_ENV_SETTINGS \</span></span><br><span class="line"><span class="meta">    <span class="string">&quot;ipaddr=192.168.1.10\0&quot;</span> \</span></span><br><span class="line"><span class="meta">    <span class="string">&quot;serverip=192.168.1.111\0&quot;</span> \</span></span><br><span class="line"><span class="meta">    <span class="string">&quot;tftp=tftpboot 10000000 system.bit;fpga loadb 0 10000000 1000;tftpboot 0x200000 Image;tftpboot 0x10000000 rootfs.cpio.gz.u-boot;tftpboot 0x1000 system.dtb;booti 0x200000 0x10000000 0x1000\0&quot;</span>\</span></span><br><span class="line"><span class="meta"></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="initram临时系统文件制作"><a href="#initram临时系统文件制作" class="headerlink" title="initram临时系统文件制作"></a>initram临时系统文件制作</h2><ol>
+<li>petalinux-config</li>
+</ol>
+<blockquote>
+<p>配置yocto 配置离线编译 注意download路径需要再前面添加file:&#x2F;&#x2F;<br>设置文件系统类型为initram<br>petalinux-config–&gt;yocto settings–&gt;add pre-mirror url–&gt;回车，输入下面内容，也就是download所在目录：<br>file:&#x2F;&#x2F;&#x2F;home&#x2F;lifeng&#x2F;codes&#x2F;share_files&#x2F;2022.2&#x2F;downloads</p>
+</blockquote>
+<p>petalinux-config–&gt;yocto settings–&gt;local sstate feeds settings–&gt;回车，输入下面内容，也就是aarch64所在目录：<br>&#x2F;home&#x2F;lifeng&#x2F;codes&#x2F;share_files&#x2F;2022.2&#x2F;aarch64</p>
+<ol start="3">
+<li>petalinux-build 编译一遍</li>
+<li>petalinux-package –boot –u-boot –force 打包</li>
+<li>将编译完的images&#x2F;linux目录下的Image rootfs.cpio.gz.u-boot 和 system.dtb 拷贝到tftp目录下</li>
+<li>进入u-boot 运行 run tftp</li>
+<li>后续见 <a href="#ext4%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%88%B6%E4%BD%9C">ext4文件系统</a></li>
+</ol>
+<h2 id="ext4文件系统制作"><a href="#ext4文件系统制作" class="headerlink" title="ext4文件系统制作"></a>ext4文件系统制作</h2><ol>
+<li><p>petalinux-config 修改文件系统类型为ext4</p>
+</li>
+<li><p>petalinux-build 编译</p>
+</li>
+<li><p>登录临时文件系统后， 制作硬盘分区并同步文件(已经有分区了就不需要再做了)<br> 第一个fat32，第二个ext4：</p>
+<ol>
+<li>取消分区1的挂载 sudo umount &#x2F;dev&#x2F;mmcblk0p1</li>
+</ol>
+</li>
+<li><p>sudo fdisk &#x2F;dev&#x2F;mmcblk0–&gt;n–&gt;p–&gt;1–&gt;+1024M–&gt;t–&gt;b–&gt;n–&gt;p–&gt;2–&gt;回车–&gt;回车–&gt;p–&gt;w (根据提示做就行，实在不行就删除了再做)</p>
+</li>
+<li><p>sudo mkfs.vfat -F 32 &#x2F;dev&#x2F;mmcblk0p1</p>
+</li>
+<li><p>sudo mkfs.ext4 &#x2F;dev&#x2F;mmcblk0p2</p>
+</li>
+<li><p>下载image.ub和system.bit到mmcblk0p1：<br> mkdir test<br> sudo mount &#x2F;dev&#x2F;mmcblk0p1 test<br> sudo scp <a href="mailto:&#x68;&#x6a;&#107;&#x40;&#x31;&#x39;&#50;&#46;&#x31;&#54;&#56;&#46;&#x31;&#46;&#x31;&#x31;&#x32;">&#x68;&#x6a;&#107;&#x40;&#x31;&#x39;&#50;&#46;&#x31;&#54;&#56;&#46;&#x31;&#46;&#x31;&#x31;&#x32;</a>:&#x2F;mnt&#x2F;Data&#x2F;workspace&#x2F;peta_prj&#x2F;hawaii_16K_2GB_h128_202503251750&#x2F;hawaii&#x2F;images&#x2F;linux&#x2F;image.ub .&#x2F;test<br> sudo scp <a href="mailto:&#x68;&#106;&#107;&#x40;&#49;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#x2e;&#x31;&#x2e;&#49;&#x31;&#50;">&#x68;&#106;&#107;&#x40;&#49;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#x2e;&#x31;&#x2e;&#49;&#x31;&#50;</a>:&#x2F;mnt&#x2F;Data&#x2F;workspace&#x2F;peta_prj&#x2F;hawaii_16K_2GB_h128_202503251750&#x2F;hawaii&#x2F;images&#x2F;linux&#x2F;system.bit .&#x2F;test<br> sync<br> sudo umount &#x2F;dev&#x2F;mmcblk0p1</p>
+</li>
+<li><p>下载rootfs.tar.gz到mmcblk0p2 并解压<br> sudo mount &#x2F;dev&#x2F;mmcblk0p2 .&#x2F;test<br> sudo scp <a href="mailto:&#104;&#106;&#107;&#64;&#x31;&#57;&#x32;&#46;&#x31;&#x36;&#56;&#x2e;&#49;&#46;&#49;&#x31;&#x32;">&#104;&#106;&#107;&#64;&#x31;&#57;&#x32;&#46;&#x31;&#x36;&#56;&#x2e;&#49;&#46;&#49;&#x31;&#x32;</a>:&#x2F;mnt&#x2F;Data&#x2F;workspace&#x2F;peta_prj&#x2F;hawaii_16K_2GB_h128_202503251750&#x2F;hawaii&#x2F;images&#x2F;linux&#x2F;rootfs.tar.gz .&#x2F;test<br> sudo tar -xzvf .&#x2F;test&#x2F;rootfs.tar.gz<br> sync<br> sudo umount &#x2F;dev&#x2F;mmcblk0p2<br> sudo reboot</p>
+</li>
+</ol>
+<h3 id="编译结果的文件解释"><a href="#编译结果的文件解释" class="headerlink" title="编译结果的文件解释"></a>编译结果的文件解释</h3><h4 id="BOOT-bin"><a href="#BOOT-bin" class="headerlink" title="BOOT.bin"></a>BOOT.bin</h4><p>用于 Zynq 系列 SoC 的引导文件，包含了引导加载程序（Bootloader）、FSBL（First Stage Boot Loader）、FPGA 位流（FPGA Bitstream）和其他引导所需的文件。<br>引导加载程序会加载 BOOT.bin 文件到 SoC 中，然后执行其中的 FSBL，接着启动 Linux 内核或者其他操作系统。<br>BOOT.bin 文件通常由 Xilinx Vivado 工具生成，其中包含了 FSBL 和 FPGA 位流的打包，用于引导 Zynq 系列 SoC 并初始化系统。</p>
+<h4 id="image-ub"><a href="#image-ub" class="headerlink" title="image.ub"></a>image.ub</h4><p>通常包含了引导加载程序（Bootloader）、内核（Kernel）和根文件系统（Root File System）等</p>
+<h4 id="system-bit-bitstream"><a href="#system-bit-bitstream" class="headerlink" title="system.bit(bitstream)"></a>system.bit(bitstream)</h4><p>包含了 FPGA 的配置信息以及设计在 FPGA 中的逻辑实现。</p>
+<h4 id="rootfs-cpio-tar-gz"><a href="#rootfs-cpio-tar-gz" class="headerlink" title="rootfs_cpio.tar.gz"></a>rootfs_cpio.tar.gz</h4><p>根文件系统的打包文件，用于存储整个文件系统的内容。这种文件通常包含了操作系统中的文件、目录结构、库文件、配置文件等。其中，.cpio 表示使用 cpio 工具进行打包，<br>.tar.gz 表示使用 tar 工具进行打包并使用 gzip 进行压缩。在嵌入式系统中，根文件系统是操作系统运行时所需的文件系统，包含了操作系统核心和用户空间程序所需的文件。</p>
+<h4 id="zynqmp-fsbl-elf"><a href="#zynqmp-fsbl-elf" class="headerlink" title="zynqmp_fsbl.elf"></a>zynqmp_fsbl.elf</h4><p>是 Zynq 系列 SoC 中的第一阶段引导加载程序（FSBL），用于启动系统并配置硬件环境。<br>FSBL 负责初始化处理器、DDR 存储器、外设等硬件，并加载 Linux 内核或其他操作系统到内存中。<br>zynqmp_fsbl.elf 是 FSBL 的可执行文件</p>
+<h3 id="u-boot"><a href="#u-boot" class="headerlink" title="u-boot"></a>u-boot</h3><p>U-Boot是嵌入式系统中常用的引导加载程序，负责初始化硬件并加载操作系统。<br>of_**系列函数是设备树相关函数</p>
+<h3 id="SysMonPSU"><a href="#SysMonPSU" class="headerlink" title="SysMonPSU"></a>SysMonPSU</h3><p>AMS Analog Mixed Signal<br>XADC Xilinx Analog-to-Digital Converter</p>
+<p>在&#x2F;sys&#x2F;bus&#x2F;iio&#x2F;devices&#x2F;iio:device0 下会更新设备的一些状态信息</p>
+<h4 id="pgrep-获取指定进程信息"><a href="#pgrep-获取指定进程信息" class="headerlink" title="pgrep 获取指定进程信息"></a>pgrep 获取指定进程信息</h4><h4 id="驱动创建"><a href="#驱动创建" class="headerlink" title="驱动创建"></a>驱动创建</h4><p>petalinux-create -t modules –name fpgaversion –enable</p>
+<h4 id="应用创建"><a href="#应用创建" class="headerlink" title="应用创建"></a>应用创建</h4><p>petalinux-create -t apps –template install –name autoinsmod –enable</p>
+<h3 id="gdb-远程调试"><a href="#gdb-远程调试" class="headerlink" title="gdb 远程调试"></a>gdb 远程调试</h3><ol>
+<li>在petalinux项目中运行, 编译gdbserver</li>
+</ol>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">petalinux-config -c rootfs</span><br></pre></td></tr></table></figure>
+
+<p>Filesystem Package<br>    –&gt; misc<br>        —&gt; gdb<br>            –&gt; [*]gdbserver</p>
+<ol start="2">
+<li><p>petalinux-build 之后用这个系统即可</p>
+</li>
+<li><p>启动系统后运行</p>
+</li>
+</ol>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo gdbserver 宿主机ip:端口号 ./hawaii </span><br></pre></td></tr></table></figure>
+
+<p>hawaii运行需要sudo权限</p>
+<p>在宿主机vscode中添加项目launch.json (设置根据自己的设置更改)</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.2.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;(gdb) 启动&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cppdbg&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;launch&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;program&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;/bin/hawaii&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;stopAtEntry&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;environment&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;externalConsole&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;MIMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gdb&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;miDebuggerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/gdb-multiarch&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;miDebuggerServerAddress&quot;</span><span class="punctuation">:</span> <span class="string">&quot;192.168.1.10:1234&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;setupCommands&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;为 gdb 启用整齐打印&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;-enable-pretty-printing&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;ignoreFailures&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>打完断点后直接gdb启动就行</p>
+<h1 id="create-modules-驱动"><a href="#create-modules-驱动" class="headerlink" title="create modules 驱动"></a>create modules 驱动</h1><p>自动添加module</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">modules=(<span class="string">&quot;dmacloud&quot;</span> <span class="string">&quot;dmaraw&quot;</span> <span class="string">&quot;fittingconfig&quot;</span> <span class="string">&quot;fpgaversion&quot;</span> <span class="string">&quot;jesd204rx0&quot;</span></span><br><span class="line">        <span class="string">&quot;jesd204rx1&quot;</span> <span class="string">&quot;pcld32hz8ch&quot;</span> <span class="string">&quot;quadspi&quot;</span> <span class="string">&quot;scan32hz18b&quot;</span> <span class="string">&quot;systemconfig&quot;</span></span><br><span class="line">        <span class="string">&quot;tn581tia&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> module <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;modules[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">        petalinux-create -t modules --name <span class="string">&quot;<span class="variable">$module</span>&quot;</span> --<span class="built_in">enable</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">apps=(<span class="string">&quot;autoinsmod&quot;</span> <span class="string">&quot;autostart&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> app <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;apps[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">  petalinux-create -t apps --template install --name <span class="string">&quot;<span class="variable">$app</span>&quot;</span> --<span class="built_in">enable</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p>petalinux-create -t modules –name dmacloud –enable<br>petalinux-create -t modules –name dmaraw –enable<br>petalinux-create -t modules –name fittingconfig –enable<br>petalinux-create -t modules –name fpgaversion –enable<br>petalinux-create -t modules –name jesd204rx0 –enable<br>petalinux-create -t modules –name jesd204rx1 –enable<br>petalinux-create -t modules –name pcld32hz8ch –enable<br>petalinux-create -t modules –name quadspi –enable<br>petalinux-create -t modules –name scan32hz18b –enable<br>petalinux-create -t modules –name systemconfig –enable<br>petalinux-create -t modules –name tn581tia –enable</p>
+<!-- petalinux-create -t modules --name pac194x5x --enable -->
+
+<h2 id="linuxptp"><a href="#linuxptp" class="headerlink" title="linuxptp"></a>linuxptp</h2><h3 id="内核配置"><a href="#内核配置" class="headerlink" title="内核配置"></a>内核配置</h3><ol>
+<li>进入内核配置界面 petalinux-config -c kernel<br>Device Drivers → Networking support → Timestamping in Phy devices</li>
+<li>Device Drivers → PTP clock support → XLILINX PTP CLOCK</li>
+<li>Device Drivers → PPS support → PPS client using GPIO</li>
+<li>Device Drivers → Network device support → Ethernet driver support → Generate hardware packet timestamps</li>
+</ol>
+<h3 id="rootfs设置"><a href="#rootfs设置" class="headerlink" title="rootfs设置"></a>rootfs设置</h3><p>petalinux-config → Filesystem Packages → base → linuxptp<br>petalinux-config → Filesystem Packages → base → linuxptp-dev</p>
+<h2 id="设置自动登录"><a href="#设置自动登录" class="headerlink" title="设置自动登录"></a>设置自动登录</h2><ol>
+<li>petalinux-config -c rootfs</li>
+</ol>
+<h1 id="PetaLinux-patch生成和应用方法整理"><a href="#PetaLinux-patch生成和应用方法整理" class="headerlink" title="PetaLinux patch生成和应用方法整理"></a>PetaLinux patch生成和应用方法整理</h1><h2 id="patch"><a href="#patch" class="headerlink" title="patch"></a>patch</h2><p>见<a target="_blank" rel="noopener" href="https://adaptivesupport.amd.com/s/article/Petalinuxpatch%E7%94%9F%E6%88%90%E5%92%8C%E5%BA%94%E7%94%A8%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86?language=zh_CN">patch生成和应用</a></p>
+<h3 id="2021-1及以后的版本"><a href="#2021-1及以后的版本" class="headerlink" title="2021.1及以后的版本"></a>2021.1及以后的版本</h3><ol>
+<li>直接通过petalinux工具中的命令，把源码下载到当前的petalinux工程中然后直接按照需要修改，命令格式如下：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">petalinux-devtool modify &lt;recipe-name&gt;</span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line">petalinux-devtool modify linux-xlnx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Linux kernel的源码会被下载到<plnx-proj-root>&#x2F;components&#x2F;yocto&#x2F;workspace&#x2F;sources&#x2F;<recipe-name>文件夹下。然后可以直接在这个位置对kernel的源码进行修改，修改完成后直接用petalinux-build就可以编译进去了。<br>如果不知道确切的recipe的名字的话，可以使用petalinux-devtool search <key word>来查找。<br>例如：petalinux-devtool search xen</p>
+<h3 id="清除patch"><a href="#清除patch" class="headerlink" title="清除patch"></a>清除patch</h3><p>A. 查看当前 devtool 状态<br>petalinux-devtool status</p>
+<p>B. 放弃（还原）工作区修改（未 finish 时）<br>petalinux-devtool reset linux-xlnx<br>这会移除 workspace&#x2F;sources&#x2F;linux-xlnx 覆盖层。</p>
+<p>C. 如果已经 finish 生成了补丁<br>目录通常为：<br>project-spec&#x2F;meta-user&#x2F;recipes-kernel&#x2F;linux&#x2F;<br>可能包含：<br>linux-xlnx%.bbappend<br>*.patch 或 目录 linux-xlnx&#x2F; 下的补丁文件<br>处理：</p>
+<p>直接删除不需要的补丁文件和对应的 bbappend，或编辑 bbappend 去掉不想应用的 SRC_URI +&#x3D; “ xxx.patch” 行。<br>保留一个空的 bbappend 也可以（不再引用补丁）。<br>D. 清理构建输出（按需要由轻到重）<br>petalinux-build -c kernel -x clean # 仅清理编译产物<br>petalinux-build -c kernel -x cleansstate # 清 kernel 的 sstate 与工作目录 (等价 Yocto cleansstate)<br>petalinux-build -c kernel -x mrproper # 更彻底；还原到接近初始 (不删 downloads)<br>petalinux-build -x distclean # 项目级更彻底清理（慎用）</p>
+<p>E. 重新构建<br>petalinux-build -c kernel<br>或直接 petalinux-build</p>
+<p>F. 验证补丁是否仍被使用<br>bitbake -e virtual&#x2F;kernel | grep -i ‘.patch’<br>或查看 tmp&#x2F;work&#x2F;…&#x2F;linux-xlnx&#x2F;<version>&#x2F;temp&#x2F;log.do_patch 是否已无相关 patch。</p>
+<p>额外说明（区别）：</p>
+<p>-x clean: 删除当前 recipe 的构建目录（workdir）输出。<br>-x cleansstate: 再加删除该 recipe 对应的 sstate 缓存，确保重新执行 fetch&#x2F;patch&#x2F;configure。<br>-x mrproper: 针对 kernel 做更深清理（类似内核 make mrproper）。<br>-x distclean: 项目大清理，除 downloads 之外几乎全删。<br>如果只是想撤回误改，不必 distclean。通常 reset + 删除补丁 + cleansstate 足够。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// ...existing code...</span><br><span class="line">petalinux-devtool modify linux-xlnx</span><br><span class="line">// ...existing code...</span><br></pre></td></tr></table></figure>
+
+<h3 id="清理-devtool-modify-linux-xlnx-产生的源码与补丁"><a href="#清理-devtool-modify-linux-xlnx-产生的源码与补丁" class="headerlink" title="清理 devtool modify (linux-xlnx) 产生的源码与补丁"></a>清理 devtool modify (linux-xlnx) 产生的源码与补丁</h3><ol>
+<li>查看状态</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">petalinux-devtool status</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>放弃工作区修改（未 finish 时）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">petalinux-devtool reset linux-xlnx</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>若已执行过 finish（生成补丁）<br>删除目录:<br><code>project-spec/meta-user/recipes-kernel/linux/</code> 下的</li>
+</ol>
+<ul>
+<li><code>linux-xlnx*.bbappend</code> （或编辑移除不需要的 SRC_URI +&#x3D; “ file:&#x2F;&#x2F;xxx.patch”）  </li>
+<li>相关 <code>*.patch</code> 文件或子目录</li>
+</ul>
+<ol start="4">
+<li>清理构建&#x2F;缓存（按需选择）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">petalinux-build -c kernel -x clean</span><br><span class="line">petalinux-build -c kernel -x cleansstate    <span class="comment"># 需要强制重新应用补丁时</span></span><br><span class="line"><span class="comment"># 或更彻底：</span></span><br><span class="line">petalinux-build -c kernel -x mrproper</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>重新构建</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">petalinux-build -c kernel</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>验证补丁是否还被应用<br>查看日志 <code>build/tmp/work/.../linux-xlnx/*/temp/log.do_patch</code><br>或：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bitbake -e virtual/kernel | grep -i <span class="string">&quot;\.patch&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>清理策略说明：  </p>
+<ul>
+<li>clean: 仅删工作目录输出  </li>
+<li>cleansstate: 还删 sstate 缓存，确保补丁重跑或不再应用  </li>
+<li>mrproper: 针对内核的更彻底清理  </li>
+<li>distclean: 项目级大清理，非必要不使用</li>
+</ul>
+<h2 id="petalinux-build-清理"><a href="#petalinux-build-清理" class="headerlink" title="petalinux-build 清理"></a>petalinux-build 清理</h2><h3 id="清理所有构建输出和缓存"><a href="#清理所有构建输出和缓存" class="headerlink" title="清理所有构建输出和缓存"></a>清理所有构建输出和缓存</h3><p>petalinux-build -x mrproper</p>
+<h3 id="或者使用"><a href="#或者使用" class="headerlink" title="或者使用"></a>或者使用</h3><p>petalinux-build -x distclean</p>
+<h3 id="清理特定组件"><a href="#清理特定组件" class="headerlink" title="清理特定组件"></a>清理特定组件</h3><p>petalinux-build -c <component> -x clean</p>
+<h3 id="清理内核"><a href="#清理内核" class="headerlink" title="清理内核"></a>清理内核</h3><p>petalinux-build -c kernel -x clean</p>
+<h3 id="清理-u-boot"><a href="#清理-u-boot" class="headerlink" title="清理 u-boot"></a>清理 u-boot</h3><p>petalinux-build -c u-boot -x clean</p>
+<h3 id="清理根文件系统"><a href="#清理根文件系统" class="headerlink" title="清理根文件系统"></a>清理根文件系统</h3><p>petalinux-build -c rootfs -x clean</p>
+<h3 id="清理设备树"><a href="#清理设备树" class="headerlink" title="清理设备树"></a>清理设备树</h3><p>petalinux-build -c device-tree -x clean</p>
+<h1 id="preboot-通过-mdio-直接操作phy"><a href="#preboot-通过-mdio-直接操作phy" class="headerlink" title="preboot 通过 mdio 直接操作phy"></a>preboot 通过 mdio 直接操作phy</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mdio write 0 0x1f 0x4000; // 设置寄存器 [0x001F] 的位 [15] 来启动硬件复位，则会在上电时激活复位。</span><br><span class="line"><span class="built_in">sleep</span> 1;</span><br><span class="line">mdio write 0 0x0D 0x001F;</span><br><span class="line">mdio write 0 0x0E 0x0573;  // 寄存器地址</span><br><span class="line">mdio write 0 0x0D 0x401F;</span><br><span class="line">mdio write 0 0x0E 0x0001;  // 寄存器值</span><br><span class="line"></span><br><span class="line">mdio write 0 0x0D 0x001F;</span><br><span class="line">mdio write 0 0x0E 0x056a;</span><br><span class="line">mdio write 0 0x0D 0x401F;</span><br><span class="line">mdio write 0 0x0E 0x5f41;</span><br><span class="line"></span><br><span class="line">mdio write 0 0x0D 0x001F;</span><br><span class="line">mdio write 0 0x0E 0x0602;</span><br><span class="line">mdio write 0 0x0D 0x401F;</span><br><span class="line">mdio write 0 0x0E 0x0003;</span><br><span class="line"></span><br><span class="line">fatload mmc 0:1 20000000 image.ub;fatload mmc 0:1 10000000 system.bit;fpga loadb 0 10000000 100;</span><br></pre></td></tr></table></figure>
+
+<h1 id="wsl编译petalinux过程中的报错"><a href="#wsl编译petalinux过程中的报错" class="headerlink" title="wsl编译petalinux过程中的报错"></a>wsl编译petalinux过程中的报错</h1><h2 id="OSError-Errno-28-inotify-watch-limit-reached"><a href="#OSError-Errno-28-inotify-watch-limit-reached" class="headerlink" title="OSError: [Errno 28] inotify watch limit reached"></a><code>OSError: [Errno 28] inotify watch limit reached</code></h2><p>表示 inotify 监视器的限制已经达到了系统的最大值，无法再监视更多的文件或目录.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 方法一 重启后会失效</span></span><br><span class="line">sudo sysctl -w fs.inotify.max_user_watches=524288 </span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二 编辑 /etc/sysctl.conf 文件，添加或修改以下行：</span></span><br><span class="line">fs.inotify.max_user_watches=524288</span><br><span class="line"><span class="comment"># 然后重新加载配置</span></span><br><span class="line">sudo sysctl -p</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://blog.xdereck.xyz">索雷博</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://blog.xdereck.xyz/2026/01/31/linux-os-system/">http://blog.xdereck.xyz/2026/01/31/linux-os-system/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://blog.xdereck.xyz" target="_blank">雷子集中营</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/os/">os</a></div><div class="post-share"><div class="social-share" data-image="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/image/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/image/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/01/31/RTOS-system/" title="RTOS System"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="onerror=null;src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">RTOS System</div></div><div class="info-2"><div class="info-item-1">RTOS 实时操作系统MOSI&#x2F;MISO loopbackMOSI（Master Out Slave In）和 MISO（Master In Slave Out）是 SPI 总线的两条数据线。Loopback 指的是将 MOSI 和 MISO 物理上短接（或在软件中模拟），这样主机发送的数据会直接回到主机的接收端。在没有真实 SPI 从设备的情况下，可以用 loopback 测试 SPI 主机的收发流程、FIFO、回调等功能是否正常。   任务优先级设置#define TASK_PRIORITY_PAYLOAD     (tskIDLE_PRIORITY + 4)#define TASK_PRIORITY_HEARTBEAT   (tskIDLE_PRIORITY + 1)/* ... */int userTaskStack = TASK_PRIORITY_PAYLOAD;TaskHandle_t userTask = xTaskCreateStatic(                            &amp;user_task_entry,      ...</div></div></div></a><a class="pagination-related" href="/2026/01/31/nxp-imx8mp-Q-A/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">问题 对于uboot设备树中的OTG设备如何修改（让uboot阶段能进fastboot模式）   </div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/05/12/linux-OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/" title="petalinux"><img class="cover" src="/image/%E9%93%B6%E7%8B%BC.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">petalinux</div></div><div class="info-2"><div class="info-item-1">OSIOSI: Open System Interconnect (开放式系统互联)OSI参考模型    OSI七层模型 TCP&#x2F;IP四层模型 TCP&#x2F;IP协议族    应用层、表示层、会话层 应用层 HTTP, FTP, DNS, SMTP   传输层 传输层 TCP, UDP   网络层 网络层 IP, ICMP, ARP   数据链路层、物理层 网络接口层 Ethernet, Wi-Fi, PPP   </div></div></div></a><a class="pagination-related" href="/2025/05/12/linux-arm-dev/" title="arm"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">arm</div></div><div class="info-2"><div class="info-item-1">RICRIC 通常指 RAN Intelligent Controller(无线接入网智能控制器) </div></div></div></a><a class="pagination-related" href="/2025/05/12/linux-linux-kernel/" title="linux kernel"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">linux kernel</div></div><div class="info-2"><div class="info-item-1">kernel 编译常见错误编译选项证书make[1]: [&#x2F;home&#x2F;hjk&#x2F;Desktop&#x2F;workspace&#x2F;00.linux-kernel&#x2F;linux-6.14.2&#x2F;Makefile:1994: .] Error 2make: [Makefile:251: __sub-make] Error 2 编译时内存不足(多半是虚拟机分配的内存空间不足)# 1. 创建分区sudo dd if=/dev/zero of=/swapfile bs=1M count=1024    # 1 * 1024 = 1024 创建 1 g 的内存分区sudo mkswap /swapfilesudo swapon /swapfile# free -m    #可以查看内存使用# 创建完交换分区之后就可以继续编译# 编译完之后记得用以下命令关闭交换分区# 某次我就是忘了关闭交换分区，导致开不了机，然后切换 tty1 ，登进去之后关闭交换分区才可以进入桌面的。#2. 关闭分区sudo swapoff /swapfilesudo...</div></div></div></a><a class="pagination-related" href="/2025/05/12/linux-petalinux/" title="petalinux"><img class="cover" src="/image/%E9%93%B6%E7%8B%BC.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">petalinux</div></div><div class="info-2"><div class="info-item-1">常用指令1 source &#x2F;opt&#x2F;pkg&#x2F;petalinux&#x2F;settings.sh2 cd workspace&#x2F;petalinux&#x2F;3 petalinux-create -t project –template zynqMP -n lark4 cd lark5 petalinux-config –get-hw-description ..&#x2F;..&#x2F;xsa_files&#x2F;second&#x2F;6 petalinux-config -c kernel7 petalinux-config -c rootfs8 petalinux-build9 petalinux-package –boot –fsbl –fpga –u-boot –force10 petalinux 2022.2...</div></div></div></a><a class="pagination-related" href="/2026/03/18/nxp-imx8mp-hawaii-gen2/" title="NXP OS System"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-18</div><div class="info-item-2">NXP OS System</div></div><div class="info-2"><div class="info-item-1">standalone 编译各模块uboot拉取uboot仓库# clone 自己的仓库后，将官方的仓库subtree下来 注意可能需要代理git remote add uboot-imx https://github.com/nxp-imx/uboot-imx.gitgit subtree add --prefix=uboot-imx uboot-imx lf_v2025.04 --squash # --squash 是将remote仓库的所有提交commint成一个# 拉取atf信任固件git remote add imx-atf https://github.com/nxp-imx/imx-atf git subtree add --prefix=imx-atf imx-atf lf_v2.12 --squash# 下载ddr training binmkdir firmware-imxwget -P ./firmware-imx...</div></div></div></a><a class="pagination-related" href="/2026/03/18/nxp-imx8mp-yocto-prj/" title="NXP OS System"><img class="cover" src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-18</div><div class="info-item-2">NXP OS System</div></div><div class="info-2"><div class="info-item-1">yocto 编译nxp系统检查 Yocto 编译出来的 .wic 镜像内容查看分区信息# 查看分区信息fdisk -l core-image-*.wic  挂载 .wic 镜像分区unzstd ./tmp/deploy/images/imx8mpevk/core-image-base-*.wic.zstsudo losetup -Pf --show ./tmp/deploy/images/imx8mpevk/core-image-base-*.wicsudo mkdir ./wicrootsudo mount /dev/loop0p2 ./wicrootls ./wicroot/ls ./wicroot/usr/bin/# 卸载并释放 loop 设备sudo umount ./wicrootsudo losetup -d /dev/loop0  扩展rootfs分区边界fdisk /dev/mmcblk2# 输入 p查看当前分区，记下第2分区的 Start（起始扇区）数值# 输入 d，然后输入 2 删除第2分区。# 输入 n 新建分区，输入 p，编号输入 2#...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/jk.jpg" onerror="this.onerror=null;this.src='/image/%E7%A7%98%E4%B9%A6.gif'" alt="avatar"/></div><div class="author-info-name">索雷博</div><div class="author-info-description">雷子集中营营长</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hjk0815"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hjk0815" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/mjh1667002013" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1779165536&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:18586626234@163.com" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">雷子信徒可入</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%90%AF%E5%8A%A8-%E4%BD%BF%E7%94%A8-systemmd-%E6%9C%8D%E5%8A%A1"><span class="toc-text">自启动 使用 systemmd 服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-app"><span class="toc-text">create app</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#file-path"><span class="toc-text">file path</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%BC%96%E5%86%99"><span class="toc-text">服务编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E6%96%B9%E7%BC%96%E5%86%99"><span class="toc-text">配方编写</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">linux常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#systemctl"><span class="toc-text">systemctl</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#petalinux-%E7%B3%BB%E7%BB%9F%E5%88%B6%E4%BD%9C"><span class="toc-text">petalinux 系统制作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%E5%92%8C%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%B6%E4%BD%9C"><span class="toc-text">系统引导和文件系统的制作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#initram%E4%B8%B4%E6%97%B6%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E5%88%B6%E4%BD%9C"><span class="toc-text">initram临时系统文件制作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ext4%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%88%B6%E4%BD%9C"><span class="toc-text">ext4文件系统制作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E7%BB%93%E6%9E%9C%E7%9A%84%E6%96%87%E4%BB%B6%E8%A7%A3%E9%87%8A"><span class="toc-text">编译结果的文件解释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BOOT-bin"><span class="toc-text">BOOT.bin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#image-ub"><span class="toc-text">image.ub</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#system-bit-bitstream"><span class="toc-text">system.bit(bitstream)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rootfs-cpio-tar-gz"><span class="toc-text">rootfs_cpio.tar.gz</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zynqmp-fsbl-elf"><span class="toc-text">zynqmp_fsbl.elf</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u-boot"><span class="toc-text">u-boot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SysMonPSU"><span class="toc-text">SysMonPSU</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pgrep-%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E8%BF%9B%E7%A8%8B%E4%BF%A1%E6%81%AF"><span class="toc-text">pgrep 获取指定进程信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E5%88%9B%E5%BB%BA"><span class="toc-text">驱动创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%88%9B%E5%BB%BA"><span class="toc-text">应用创建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gdb-%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95"><span class="toc-text">gdb 远程调试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#create-modules-%E9%A9%B1%E5%8A%A8"><span class="toc-text">create modules 驱动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#linuxptp"><span class="toc-text">linuxptp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E9%85%8D%E7%BD%AE"><span class="toc-text">内核配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rootfs%E8%AE%BE%E7%BD%AE"><span class="toc-text">rootfs设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95"><span class="toc-text">设置自动登录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PetaLinux-patch%E7%94%9F%E6%88%90%E5%92%8C%E5%BA%94%E7%94%A8%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86"><span class="toc-text">PetaLinux patch生成和应用方法整理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#patch"><span class="toc-text">patch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2021-1%E5%8F%8A%E4%BB%A5%E5%90%8E%E7%9A%84%E7%89%88%E6%9C%AC"><span class="toc-text">2021.1及以后的版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E9%99%A4patch"><span class="toc-text">清除patch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%90%86-devtool-modify-linux-xlnx-%E4%BA%A7%E7%94%9F%E7%9A%84%E6%BA%90%E7%A0%81%E4%B8%8E%E8%A1%A5%E4%B8%81"><span class="toc-text">清理 devtool modify (linux-xlnx) 产生的源码与补丁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#petalinux-build-%E6%B8%85%E7%90%86"><span class="toc-text">petalinux-build 清理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E6%89%80%E6%9C%89%E6%9E%84%E5%BB%BA%E8%BE%93%E5%87%BA%E5%92%8C%E7%BC%93%E5%AD%98"><span class="toc-text">清理所有构建输出和缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%96%E8%80%85%E4%BD%BF%E7%94%A8"><span class="toc-text">或者使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E7%89%B9%E5%AE%9A%E7%BB%84%E4%BB%B6"><span class="toc-text">清理特定组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E5%86%85%E6%A0%B8"><span class="toc-text">清理内核</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%90%86-u-boot"><span class="toc-text">清理 u-boot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E6%A0%B9%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-text">清理根文件系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E8%AE%BE%E5%A4%87%E6%A0%91"><span class="toc-text">清理设备树</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#preboot-%E9%80%9A%E8%BF%87-mdio-%E7%9B%B4%E6%8E%A5%E6%93%8D%E4%BD%9Cphy"><span class="toc-text">preboot 通过 mdio 直接操作phy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wsl%E7%BC%96%E8%AF%91petalinux%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%8A%A5%E9%94%99"><span class="toc-text">wsl编译petalinux过程中的报错</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OSError-Errno-28-inotify-watch-limit-reached"><span class="toc-text">OSError: [Errno 28] inotify watch limit reached</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/18/nxp-imx8mp-hawaii-gen2/" title="NXP OS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="NXP OS System"/></a><div class="content"><a class="title" href="/2026/03/18/nxp-imx8mp-hawaii-gen2/" title="NXP OS System">NXP OS System</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/18/nxp-imx8mp-yocto-prj/" title="NXP OS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="NXP OS System"/></a><div class="content"><a class="title" href="/2026/03/18/nxp-imx8mp-yocto-prj/" title="NXP OS System">NXP OS System</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/18/Tools-python-ruff/" title="无标题">无标题</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/18/Tools-python-uv/" title="无标题">无标题</a><time datetime="2026-03-18T11:23:36.817Z" title="发表于 2026-03-18 19:23:36">2026-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/31/RTOS-system/" title="RTOS System"><img src="/image/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3.jpg" onerror="this.onerror=null;this.src='/image/%E4%B8%8D%E8%89%AF%E5%B0%91%E5%A5%B3.jpg'" alt="RTOS System"/></a><div class="content"><a class="title" href="/2026/01/31/RTOS-system/" title="RTOS System">RTOS System</a><time datetime="2026-01-31T11:53:09.330Z" title="发表于 2026-01-31 19:53:09">2026-01-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By 索雷博</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.2.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/styles/fish.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
