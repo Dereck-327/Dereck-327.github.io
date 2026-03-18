@@ -119,9 +119,9 @@ theme: butterfly # landscape butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  # - type: git
-  #   repo: git@github.com:Dereck-327/Dereck-327.github.io.git
-  #   branch: master
+  - type: git
+    repo: git@github.com:Dereck-327/Dereck-327.github.io.git
+    branch: master
   - type: git
     repo: ssh://hjk@blog.xdereck.xyz:8035/home/hjk/workspace/00.blog/blog.git
     branch: master
