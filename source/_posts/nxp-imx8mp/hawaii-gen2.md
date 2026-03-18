@@ -491,10 +491,11 @@ resize
 
 ```sh
 #!/bin/bash
-ethtool -K end1 rx-vlan-filter off
+ethtool -K eth1 rx-vlan-filter off
 # 1. 启用网桥 VLAN 过滤（这是下发硬件表的总开关）
 echo "Enabling VLAN filtering on br0..."
-ip link set dev br0 type bridge vlan_filtering 1
+# ip link set dev br0 type bridge vlan_filtering 1
+ip link add br0 type bridge vlan_filtering 1
 
 # 2. 清理所有端口默认的 VLAN 1 (防止广播域重叠)
 echo "Clearing default VLAN 1 from ports..."
@@ -629,7 +630,7 @@ verbose                 1
 priority1               254
 priority2               254
 
-[end0]
+[eth1]
 
 [swp1]
 [swp2]
@@ -689,3 +690,26 @@ gpioset gpiochip0 9=0
 gpioset gpiochip0 9=1
 ```
 
+# 设备磁盘打包wic
+
+```bash
+# pc 终端执行
+ssh root@ip "dd if=/dev/mmcblk2 bs=1M status=progress" | dd of=hawaii-backup.raw
+cp --sparse=always hawaii-backup.raw hawaii.wic
+#生成bmap
+bmaptool create hawaii.wic > hawaii.wic.bmap
+#压缩
+# 需要安装 sudo apt install pbzip2
+pbzip2 -9 hawaii.wic
+
+#烧录
+uuu.exe -b emmc_all flash.bin hawaii.wic.bz2
+```
+
+压缩得时候也可以使用
+
+```bash
+# 安装 zstd sudo apt install zstd
+# 使用 zstd 压缩 (使用较高的等级 --ultra 20)
+zstd --ultra -20 hawaii.wic -o hawaii.wic.zst
+```
