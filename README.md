@@ -27,3 +27,13 @@ hexo s
 
 hexo clean && hexo g && hexo d
 ```
+
+### 访问
+
+#### github page.io
+
+[Page.io](https://dereck-327.github.io/ "访问 GitHub page")
+
+#### personal page
+
+[personal](http://blog.xdereck.xyz:8034/ "访问个人网站")
