@@ -80,17 +80,17 @@ social:
 favicon: /img/favicon.png
 
 avatar:
-  img: /image/homepage/avatar/leisai-0.png
-  effect: true
+  img: /image/cover_wallpaper/homepage/avatar/leisai-0.png
+  effect: false
 
 # Disable all banner images
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img: /image/homepage/top/动漫少女.jpg
+default_top_img: /image/cover_wallpaper/homepage/top/动漫少女.jpg
 
 # The banner image of index page
-index_img: /image/homepage/top/动漫少女.jpg
+index_img: /image/cover_wallpaper/homepage/top/动漫少女.jpg
 
 # The banner image of archive page
 archive_img: /image/cover_wallpaper/homepage/archive/约尔-间谍过家家.png
