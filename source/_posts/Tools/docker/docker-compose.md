@@ -25,4 +25,13 @@ services:
       - TZ=Asia/Shanghai
 ```
 
-启动命令: docker compose up -d
+```bash
+# 启动命令: 
+docker compose up -d
+# 停止
+docker compose down
+# docker stop rustdesk-api
+# docker rm rustdesk-api
+# docker rm -f rustdesk-api  // -f 强制删除
+
+```

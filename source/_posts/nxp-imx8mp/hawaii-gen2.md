@@ -611,27 +611,32 @@ tcpdump -i end1 -n -e
 
 ```bash
 # 运行边界时钟
-ptp4l -2 -f linux_ptp_bc.cfg -m && phc2sys -a -r -m
-# 需要关闭网桥
-ip link set br0 down
+ptp4l -2 -f linux_ptp_bc.cfg -m 
+
+phc2sys -s eth0 -c swp1 -O 0 -m
+
 ```
 
 ```conf
 [global]
+# 允许跨越不同的硬件时钟（JBOD模式）
 boundary_clock_jbod     1
-# 硬件时间戳
 time_stamping           hardware
-
-delay_mechanism         E2E
-
+# 如果不确定下游设备模式，建议先尝试 E2E
+delay_mechanism         P2P
 network_transport       L2
+# 除非特定行业需求，transportSpecific 通常设为 0
+transportSpecific       1
+domainNumber            0
 verbose                 1
-
+# 降低优先级数值（如128），确保在没有外部时钟时才选自己，或者保持254让外部时钟胜出
 priority1               254
 priority2               254
 
-[eth1]
+# 上游接口
+[eth0]
 
+# 下游接口
 [swp1]
 [swp2]
 [swp3]

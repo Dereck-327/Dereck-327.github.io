@@ -252,3 +252,14 @@ mmc dev 2 # select emmc device
 gpt write 0 # earse gpt
 
 ```
+
+
+#### BitBake 一个 recipe 大致分几步：
+
+1. do_fetch
+2. do_unpack
+3. do_configure
+4. do_compile
+5. do_install
+6. do_package
+7. do_rootfs
