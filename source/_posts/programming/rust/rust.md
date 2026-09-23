@@ -8,6 +8,16 @@ top_img: /image/jizi.png
 cover: /image/动漫少女.jpg   
 ---
 
+# 镜像设置
+
+```bash
+export RUSTUP_DIST_SERVER=https://rsproxy.cn
+export RUSTUP_UPDATE_ROOT=https://rsproxy.cn/rustup
+
+# update
+rustup update
+```
+
 # type 
 
 ## Option<T>
